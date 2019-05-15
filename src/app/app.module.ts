@@ -8,6 +8,7 @@ import { FooterComponent } from './core/footer/footer.component';
 import { SignupComponent } from './core/signup/signup.component';
 import { HomeComponent } from './core/home/home.component';
 import { LoginComponent } from './core/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LoginComponent } from './core/login/login.component';
     LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
