@@ -1,2 +1,0 @@
-git config --global --add http.proxy http://proxy.mp.ics.com:1080/
-git config --global --add https.proxy https://proxy.mp.ics.com:1080/
