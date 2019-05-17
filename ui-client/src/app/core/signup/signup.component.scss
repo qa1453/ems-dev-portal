@@ -10,6 +10,7 @@ button.signup-button {
    color: white;
    font-size: 12px;
    font-weight: 500;
+   /* width: 1%; */
 }
 
 .signup-title {
@@ -29,3 +30,17 @@ input {
    opacity: .75;
    size: 75%;
 }
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.mat-card {
+   //background-color:#b0b3b7;
+}
+
