@@ -3,3 +3,23 @@
 $color-netsfere-base: #de4858;
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.auth-forms {
+   max-width: 400px;
+   border: 1px solid gray;
+   margin: auto;
+   padding: 12px;
+}
+
+.auth-forms [mat-raised-button] {
+   background-color: rgb(222, 72, 88) !important;
+   color: white !important;
+}
+
+.auth-forms [mat-raised-button][disabled] {
+   opacity: 0.5;
+}
+
+[mat-raised-button][disabled="false"] {
+}

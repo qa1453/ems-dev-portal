@@ -1,0 +1,86 @@
+<mat-card class="auth-forms">
+   <mat-card-header fxLayout="row"
+                    fxLayoutAlign="center">
+      <mat-card-title>
+         <span>
+            EMS Developer Portal - Sign Up
+         </span>
+      </mat-card-title>
+   </mat-card-header>
+
+   <mat-card-content>
+      <form fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="12px"
+            [formGroup]="myForm"
+            (ngSubmit)="formSubmit()">
+         <!-- email, password, submit -->
+         <mat-form-field>
+            <input type="email"
+                   matInput
+                   placeholder="email"
+                   formControlName="email">
+            <button matSuffix
+                    mat-icon-button>
+               <mat-icon matSuffix>email</mat-icon>
+            </button>
+            <mat-hint>Please enter a valid email</mat-hint>
+            <mat-error>Invalid/missing email</mat-error>
+         </mat-form-field>
+
+         <mat-form-field>
+            <input type="{{ passwordFieldType }}"
+                   matInput
+                   placeholder="password"
+                   formControlName="password">
+            <button matSuffix
+                    mat-icon-button
+                    (click)="togglePasswordVisibility()">
+               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+            </button>
+            <mat-hint>Please enter your password</mat-hint>
+            <mat-error>Missing password!</mat-error>
+         </mat-form-field>
+
+         <mat-form-field>
+            <input type="text"
+                   matInput
+                   placeholder="Company"
+                   formControlName="company">
+            <button matSuffix
+                    mat-icon-button>
+               <mat-icon>business</mat-icon>
+            </button>
+            <mat-hint>Please enter your company name</mat-hint>
+            <mat-error>Missing Company name!</mat-error>
+         </mat-form-field>
+
+         <!-- <mat-form-field> -->
+         <mat-checkbox formControlName="agreeTermsConditions">
+            Agree to Terms and Conditions?
+         </mat-checkbox>
+         <!-- </mat-form-field> -->
+
+         <mat-card-actions>
+            <button type="submit"
+                    mat-raised-button
+                    color="accent"
+                    [disabled]="myForm.invalid">Login
+            </button>
+         </mat-card-actions>
+      </form>
+   </mat-card-content>
+
+   <mat-card-footer>
+      <ul fxLayout="row"
+          fxLayoutAlign="space-around"
+          fxLayoutGap="12px">
+         <li fx>
+            <a routerLink="/login">Sign In</a>
+         </li>
+         <li>
+            <a routerLink="/forgot">Forgot Password</a>
+         </li>
+      </ul>
+   </mat-card-footer>
+</mat-card>
