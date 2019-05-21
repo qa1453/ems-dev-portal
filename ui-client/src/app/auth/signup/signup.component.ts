@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms'
+import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
+// import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 @Component({
    selector: 'app-signup',
@@ -17,18 +19,20 @@ export class SignupComponent implements OnInit {
    constructor() { }
 
    ngOnInit() {
-      //this.loginForm.value.password = "";
+      //  recaptcha: new FormControl(null, Validators.required)
       this.myForm = new FormGroup({
          email: new FormControl(null,
             { validators: [Validators.required, Validators.email] }),
          password: new FormControl(null,
-            { validators: [Validators.required, this.passwordValidator] }),
+            { validators: [Validators.required, Validators.minLength(6)] }),
          company: new FormControl(null,
-            { validators: [Validators.required, Validators.minLength(3)] }),
-         agreeTermsConditions: new FormControl(null,
-            { validators: [Validators.required] })
-      });
+            { validators: [Validators.required, Validators.minLength(3)] })
 
+      });
+   }
+
+   resolved(captchaResponse: string) {
+      console.log(`Resolved captcha with response ${captchaResponse}:`);
    }
 
    // Password Complexity Rules:

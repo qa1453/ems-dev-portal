@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMaterialModule } from './shared/ng-material-module.module';
+import { RecaptchaModule } from 'ng-recaptcha';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
@@ -33,7 +34,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
       AppRoutingModule,
       FormsModule,
       ReactiveFormsModule,
-      FlexLayoutModule
+      FlexLayoutModule,
+      RecaptchaModule
    ],
    providers: [],
    bootstrap: [AppComponent]

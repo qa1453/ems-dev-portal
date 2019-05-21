@@ -3,7 +3,7 @@
                     fxLayoutAlign="center">
       <mat-card-title>
          <span>
-            EMS Developer Portal - Sign Up
+            SIGN UP
          </span>
       </mat-card-title>
    </mat-card-header>
@@ -45,7 +45,7 @@
          <mat-form-field>
             <input type="text"
                    matInput
-                   placeholder="Company"
+                   placeholder="company"
                    formControlName="company">
             <button matSuffix
                     mat-icon-button>
@@ -56,31 +56,47 @@
          </mat-form-field>
 
          <!-- <mat-form-field> -->
-         <mat-checkbox formControlName="agreeTermsConditions">
+         <!--          <mat-checkbox formControlName="agreeTermsConditions">
             Agree to Terms and Conditions?
-         </mat-checkbox>
+         </mat-checkbox> -->
          <!-- </mat-form-field> -->
 
-         <mat-card-actions>
-            <button type="submit"
-                    mat-raised-button
-                    color="accent"
-                    [disabled]="myForm.invalid">Login
-            </button>
-         </mat-card-actions>
+         <!-- formControlName="recaptcha" -->
+         <re-captcha class="g-recaptcha"
+                     required
+                     (resolve)="resolve($event)"
+                     siteKey="6Lds-mcUAAAAAAoOoz1jA7XNm88G-dMs60Ub7OZe">
+         </re-captcha>
+
+
+         <!-- Secret Key: 6Lds-mcUAAAAAOZdnAPyO9uZNdm3IsKLEjUO52_X -->
+
+         <button type="submit"
+                 mat-raised-button
+                 color="accent"
+                 [disabled]="myForm.invalid">SIGN UP
+         </button>
+
+         <section class="terms-conditions-note">BY CLICKING THIS BUTTON YOU
+            AGREE TO OUR
+            <a href="#">TERMS AND CONDITIONS </a>
+         </section>
+
       </form>
    </mat-card-content>
 
    <mat-card-footer>
-      <ul fxLayout="row"
-          fxLayoutAlign="space-around"
-          fxLayoutGap="12px">
-         <li fx>
-            <a routerLink="/login">Sign In</a>
-         </li>
-         <li>
-            <a routerLink="/forgot">Forgot Password</a>
-         </li>
-      </ul>
+      <div fxLayout="row"
+           fxLayoutAlign="center center"
+           fxLayoutGap="12px">
+         <section fxFlex="50%"
+                  fxFlexAlign="center">
+            <a routerLink="/login">SIGN IN</a>
+         </section>
+         <section fxFlex="50%"
+                  fxFlexAlign="center">
+            <a routerLink="/forgot">FORGOT PASSWORD</a>
+         </section>
+      </div>
    </mat-card-footer>
 </mat-card>

@@ -1,34 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $color-netsfere-base: #de4858;
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
-.auth-forms {
-   max-width: 400px;
-   border: 1px solid gray;
-   margin: auto;
-   padding: 12px;
-}
-
-.auth-forms [mat-raised-button] {
-   background-color: rgb(222, 72, 88) !important;
-   color: white !important;
-}
-
-
-.mat-checkbox-checked.mat-accent .mat-checkbox-background {
-   background-color: $color-netsfere-base !important;
-}
-
-.auth-forms [mat-raised-button][disabled] {
-   opacity: 0.5;
-}
-
-[mat-raised-button][disabled="false"] {
+html,
+body {
+   height: 100%;
 }
 
 body {
-   background-color: lightgray !important;
+   margin     : 0;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.auth-forms {
+   max-width: 400px;
+   border   : 1px solid gray;
+   margin   : auto;
+   padding  : 12px;
+}
+
+.auth-forms {
+
+   [mat-raised-button] {
+      background-color: rgb(222, 72, 88) !important;
+      color           : white !important;
+   }
+
+   .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: $color-netsfere-base !important;
+   }
+
+   [mat-raised-button][disabled] {
+      opacity: 0.5;
+   }
+
+   [mat-raised-button][disabled="false"] {}
+
+   mat-card {
+      padding: 20px;
+   }
+
+   mat-form-field {
+      width: 300px;
+   }
+
+   mat-card-title span {
+      font-size: 18px;
+      margin   : auto;
+   }
+
+   mat-card-footer {
+      font-size: 12px;
+   }
+
+   mat-card-footer {
+      font-size: 12px;
+
+      margin    : 20px 12px 10px 12px;
+      text-align: center;
+   }
+
+   button {
+      width: 33%;
+   }
+
+   .terms-conditions-note {
+      font-size : 10px;
+      font-style: italc;
+   }
 }
