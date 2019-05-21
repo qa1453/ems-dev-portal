@@ -17,9 +17,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    color: white !important;
 }
 
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+   background-color: $color-netsfere-base !important;
+}
+
 .auth-forms [mat-raised-button][disabled] {
    opacity: 0.5;
 }
 
 [mat-raised-button][disabled="false"] {
+}
+
+body {
+   background-color: lightgray !important;
 }
