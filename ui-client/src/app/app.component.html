@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div fxLayout="row"
+<!-- <div fxLayout="row"
      fxLayoutGap="10px">
    <app-navbar fxFlex="15%"
                fxFlexAlign="center"></app-navbar>
@@ -8,4 +8,21 @@
         fxLayoutAlign="center center">
       <router-outlet></router-outlet>
    </div>
-</div>
+</div> -->
+
+<mat-sidenav-container class="nav-container">
+
+   <mat-sidenav #sidenav
+                role="navigation"
+                [mode]="mode.value">
+
+      <app-sidenav></app-sidenav>
+   </mat-sidenav>
+
+   <mat-sidenav-content>
+      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <main>
+         <router-outlet></router-outlet>
+      </main>
+   </mat-sidenav-content>
+</mat-sidenav-container>
