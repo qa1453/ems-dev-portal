@@ -1,0 +1,27 @@
+@import "src/styles.scss";
+
+.mat-toolbar {
+   background-color: $white;
+   position        : fixed;
+   top             : 0;
+   left            : 0;
+   z-index         : 1;
+   height          : 50px;
+   box-shadow      : 0px 10px 40px -10px $silver;
+
+   button {
+      background-color: $white;
+   }
+
+   .shift-remaining-right {
+      flex: 1 1 auto;
+
+   }
+
+   li {
+      list-style     : none;
+      text-decoration: none;
+      display        : inline;
+      padding        : 12px;
+   }
+}

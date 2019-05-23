@@ -12,7 +12,8 @@ const routes: Routes = [
    { path: 'signup', component: SignupComponent },
    { path: 'login', component: LoginComponent },
    { path: 'forgot', component: ForgotPasswordComponent },
-   { path: 'analytics', loadChildren: './app-features/analytics/analytics.module#AnalyticsModule' }
+   { path: 'analytics', loadChildren: './app-features/analytics/analytics.module#AnalyticsModule' },
+   { path: 'messagelog', loadChildren: './app-features/messagelog/messagelog.module#MessagelogModule' }
 ];
 
 @NgModule({

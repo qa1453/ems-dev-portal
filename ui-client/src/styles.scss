@@ -1,6 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
 $color-netsfere-base: #de4858;
+$white              : #ffffff;
+$black              : #000000;
+$offwhite           : #f6f7f9;
+$bright_silver      : #f3f6fe;
+$netsfere_red       : $color-netsfere-base;
+$gunmetal_gray      : #2d2d2d;
+$dark_neutral_gray  : #373737;
+$charcoal_gray      : #272727;
+$black_chrome       : #222222;
+$light_neutral_gray : #b2b2b2;
+$silver             : #d3d6de;
+$cool_gray          : #515769;
+$medium_neutral_gray: #656565;
 
 html,
 body {
@@ -13,13 +27,16 @@ body {
 }
 
 .auth-forms {
-   max-width: 275px;
-   border   : 1px solid gray;
-   margin   : auto;
-   padding  : 12px;
+   max-width       : 350px;
+   border          : 1px solid gray;
+   margin          : auto;
+   padding         : 12px;
+   background-color: white;
 }
 
 .auth-forms {
+
+   margin: 50px auto;
 
    [mat-raised-button] {
       background-color: rgb(222, 72, 88) !important;
@@ -41,7 +58,7 @@ body {
    }
 
    mat-form-field {
-      width: 225px;
+      width: 300px;
    }
 
    mat-card-title span {

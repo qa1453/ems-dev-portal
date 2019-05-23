@@ -1,3 +1,39 @@
-<p>
-  header works!
-</p>
+<mat-toolbar color="primary">
+
+   <button type="button"
+           aria-label="Toggle sidenav"
+           mat-icon-button
+           (click)="toggleSidebarCollapse()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+   </button>
+   <span>DEV<br>PORTAL</span>
+   <span class="shift-remaining-right"></span>
+   <ul>
+      <li>
+
+
+         <span>
+            <a routerLink="signup">
+               <button type="submit"
+                       aria-label="SIGN UP"
+                       color="accent"
+                       mat-raised-button>
+                  SIGNUP
+               </button>
+            </a>
+         </span>
+      </li>
+      <li>
+         <span>
+            <a routerLink="/login">LOGIN </a>
+         </span>
+      </li>
+      <li>
+         <button type="button"
+                 aria-label="Logout"
+                 mat-icon-button>
+            <mat-icon aria-label="Logout">power_settings_new</mat-icon>
+         </button>
+      </li>
+   </ul>
+</mat-toolbar>

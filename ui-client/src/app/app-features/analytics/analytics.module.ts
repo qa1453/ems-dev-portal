@@ -4,12 +4,12 @@ import { RouterModule } from '@angular/router';
 import { AnalyticsComponent } from './analytics.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-       {path: '', component: AnalyticsComponent}
-    ])
-  ],
-  declarations: [AnalyticsComponent]
+   imports: [
+      CommonModule,
+      RouterModule.forChild([
+         { path: '', component: AnalyticsComponent }
+      ])
+   ],
+   declarations: [AnalyticsComponent]
 })
 export class AnalyticsModule { }

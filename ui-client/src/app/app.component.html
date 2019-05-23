@@ -1,28 +1,31 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!-- <div fxLayout="row"
-     fxLayoutGap="10px">
-   <app-navbar fxFlex="15%"
-               fxFlexAlign="center"></app-navbar>
-   <div fxFlex="85%"
-        fxLayout="column"
-        fxLayoutAlign="center center">
-      <router-outlet></router-outlet>
-   </div>
-</div> -->
-
-<mat-sidenav-container class="nav-container">
-
-   <mat-sidenav #sidenav
-                role="navigation"
-                [mode]="mode.value">
-
-      <app-sidenav></app-sidenav>
+<mat-sidenav-container *ngIf="loggedIn; else loginBlock"
+                       class="sidenav-container">
+   <mat-sidenav #drawer
+                class="sidenav"
+                fixedInViewport="true"
+                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                [opened]="!(isHandset$ | async)">
+      <app-sidebar></app-sidebar>
    </mat-sidenav>
-
    <mat-sidenav-content>
-      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-      <main>
-         <router-outlet></router-outlet>
-      </main>
+      <app-header *ngIf="loggedIn"
+                  (toggleSidebar)="drawer.toggle()">
+      </app-header>
+      <router-outlet></router-outlet>
    </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- <ng-template #loginBlock>
+   <div class="top-nav-bar-login">
+      <app-top-nav-bar-login></app-top-nav-bar-login>
+   </div>
+   <div class="login">
+      <div class="col-sm-12 background-color-1">
+         <app-login></app-login>
+      </div>
+   </div>
+   <div class="footer">
+      <app-footer></app-footer>
+   </div>
+</ng-template> -->

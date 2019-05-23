@@ -11,10 +11,9 @@ import { HomeComponent } from './core/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { HeaderComponent } from './navigation/header/header.component';
-import { SidenavComponent } from './navigation/sidenav/sidenav.component';
-import { FooterComponent } from './navigation/footer/footer.component';
+import { NavigationModule } from './navigation/navigation.module';
 import { UsersService } from 'src/app/shared/services/users.service';
+
 
 @NgModule({
    declarations: [
@@ -22,10 +21,7 @@ import { UsersService } from 'src/app/shared/services/users.service';
       SignupComponent,
       HomeComponent,
       LoginComponent,
-      ForgotPasswordComponent,
-      HeaderComponent,
-      SidenavComponent,
-      FooterComponent
+      ForgotPasswordComponent
    ],
    imports: [
       BrowserModule,
@@ -35,7 +31,8 @@ import { UsersService } from 'src/app/shared/services/users.service';
       FormsModule,
       ReactiveFormsModule,
       FlexLayoutModule,
-      RecaptchaModule
+      RecaptchaModule,
+      NavigationModule
    ],
    providers: [UsersService],
    bootstrap: [AppComponent]

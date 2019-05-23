@@ -1,0 +1,17 @@
+@import "src/styles.scss";
+
+mat-nav-list {
+   width: 100%;
+
+   p {
+      color       : $white;
+      font-weight : bold;
+      padding-left: 20px;
+   }
+
+   &.bottom {
+      position        : absolute;
+      bottom          : 0;
+      background-color: $gunmetal_gray;
+   }
+}
