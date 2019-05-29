@@ -19,24 +19,22 @@
 
    a {
       text-decoration: none;
-      color          : black;
    }
 
    .toolbar-link:hover {
       background-color: $netsfere_red;
+
+      a {
+         color: white;
+      }
    }
 
-   .toolbar-link.login-link a {
-      color: $netsfere_red;
-   }
-
-   .toolbar-link.login-link a:hover {
-      color: black;
-   }
-
-   .mat-menu-item:hover {
+   .toolbar-link.signup-link {
       background-color: $netsfere_red;
-      font-weight     : bold;
+
+      a {
+         color: white;
+      }
    }
 
    .logo-topline {
