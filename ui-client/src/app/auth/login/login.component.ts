@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms'
-import { UsersService } from '../../shared/services/users.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms'
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +13,8 @@ export class LoginComponent implements OnInit {
    passwordFieldType: string = "password";
    passwordFieldIcon: string = "visibility_off";
    loginForm: FormGroup;
-   usersService: UsersService;
-   router: Router;
 
-   constructor(usersService: UsersService, router: Router) {
-      this.usersService = usersService;
-      this.router = router;
+   constructor(private authService: AuthService, private router: Router) {
    }
 
    ngOnInit() {
@@ -33,14 +29,17 @@ export class LoginComponent implements OnInit {
    }
 
    onSubmit() {
-      let validUser = false;;
+      let validUser = false;
 
-      validUser = this.usersService.validateUser(
-         this.loginForm.value.email,
+      console.log(this.loginForm.value.email,
          this.loginForm.value.password);
+
+      validUser = this.authService.login(this.loginForm.value);
       if (validUser) {
+         //location.reload();
          this.router.navigate(['/home']);
       } else {
+         alert('Invalid user/password combination... try again');
          console.error("Invalid User: " + this.loginForm.value.email);
       }
    }

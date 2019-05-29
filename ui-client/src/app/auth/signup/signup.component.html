@@ -1,102 +1,125 @@
-<mat-card class="auth-forms">
-   <mat-card-header fxLayout="row"
-                    fxLayoutAlign="center">
-      <mat-card-title>
-         <span>
-            SIGN UP
-         </span>
-      </mat-card-title>
-   </mat-card-header>
+<section class="signup-container"
+         fxLayout="row"
+         fxLayoutAlign="center center">
 
-   <mat-card-content>
-      <form fxLayout="column"
-            fxLayoutAlign="center center"
-            fxLayoutGap="12px"
-            [formGroup]="myForm"
-            (ngSubmit)="formSubmit()">
-         <!-- email, password, submit -->
-         <mat-form-field>
-            <input type="email"
-                   matInput
-                   placeholder="email"
-                   formControlName="email">
-            <button matSuffix
-                    mat-icon-button>
-               <mat-icon matSuffix>email</mat-icon>
-            </button>
-            <!-- <mat-hint>Please enter a valid email</mat-hint> -->
-            <mat-error>Invalid/missing email</mat-error>
-         </mat-form-field>
+   <mat-card class="signup_form">
+      <mat-card-header fxLayout="column"
+                       fxLayoutAlign="center center"
+                       fxLayoutGap>
+         <div>
+            <mat-card-title class="mat-card-title">Sign Up for Free
+            </mat-card-title>
+         </div>
+         <div>
+            <mat-card-subtitle>
+               Get an API key and send SMS for free! No credit card required.
+            </mat-card-subtitle>
+         </div>
 
-         <mat-form-field>
-            <input type="{{ passwordFieldType }}"
-                   matInput
-                   placeholder="password"
-                   formControlName="password">
-            <button matSuffix
-                    mat-icon-button
-                    (click)="togglePasswordVisibility()">
-               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
-            </button>
-            <!-- <mat-hint>Please enter your password</mat-hint> -->
-            <mat-error>Missing password!</mat-error>
-         </mat-form-field>
+      </mat-card-header>
 
-         <mat-form-field>
-            <input type="text"
-                   matInput
-                   placeholder="company"
-                   formControlName="company">
-            <button matSuffix
-                    mat-icon-button>
-               <mat-icon>business</mat-icon>
-            </button>
-            <!-- <mat-hint>Please enter your company name</mat-hint> -->
-            <mat-error>Missing Company name!</mat-error>
-         </mat-form-field>
+      <mat-card-content>
+         <form [formGroup]="myForm"
+               fxLayout="column"
+               fxLayoutAlign="space-around stretch"
+               fxLayoutGapp="2px"
+               (ngSubmit)="formSubmit()">
 
-         <!-- <mat-form-field> -->
-         <!--          <mat-checkbox formControlName="agreeTermsConditions">
-            Agree to Terms and Conditions?
-         </mat-checkbox> -->
-         <!-- </mat-form-field> -->
+            <mat-form-field>
+               <input type="text"
+                      matInput
+                      placeholder="first name"
+                      formControlName="firstName">
+               <mat-error>Missing first name</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+               <input type="text"
+                      matInput
+                      placeholder="last name"
+                      formControlName="lastName">
+               <mat-error>Missing last name</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+               <input type="email"
+                      matInput
+                      placeholder="email"
+                      formControlName="email">
+               <!-- <mat-hint>Please enter a valid email</mat-hint> -->
+               <mat-error>Invalid/missing email</mat-error>
+            </mat-form-field>
 
-         <!-- formControlName="recaptcha" -->
-         <re-captcha class="g-recaptcha"
-                     required
-                     (resolve)="resolve($event)"
-                     siteKey="6Lds-mcUAAAAAAoOoz1jA7XNm88G-dMs60Ub7OZe">
-         </re-captcha>
+            <mat-form-field>
+               <input type="{{ passwordFieldType }}"
+                      matInput
+                      placeholder="password"
+                      formControlName="password">
+               <button matSuffix
+                       mat-icon-button
+                       (click)="togglePasswordVisibility()">
+                  <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+               </button>
+               <!-- <mat-hint>Please enter your password</mat-hint> -->
+               <mat-error>Invalid/missing password!</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+               <input type="{{ password2FieldType }}"
+                      matInput
+                      placeholder="password (confirmed)"
+                      formControlName="password2">
+               <button matSuffix
+                       mat-icon-button
+                       (click)="togglePassword2Visibility()">
+                  <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+               </button>
+               <!-- <mat-hint>Please enter your password</mat-hint> -->
+               <mat-error>Invalid/missing password!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input type="text"
+                      matInput
+                      placeholder="company"
+                      formControlName="company">
+               <button matSuffix
+                       mat-icon-button>
+                  <mat-icon>business</mat-icon>
+               </button>
+               <!-- <mat-hint>Please enter your company name</mat-hint> -->
+               <mat-error>Missing Company name!</mat-error>
+            </mat-form-field>
+
+            <!-- formControlName="recaptcha" -->
+
+            <re-captcha class="g-recaptcha"
+                        required
+                        (resolve)="resolve($event)"
+                        siteKey="6Lds-mcUAAAAAAoOoz1jA7XNm88G-dMs60Ub7OZe">
+            </re-captcha>
 
 
-         <!-- Secret Key: 6Lds-mcUAAAAAOZdnAPyO9uZNdm3IsKLEjUO52_X -->
 
-         <button type="submit"
-                 mat-raised-button
-                 color="accent"
-                 [disabled]="myForm.invalid">SIGN UP
-         </button>
+            <!-- Secret Key: 6Lds-mcUAAAAAOZdnAPyO9uZNdm3IsKLEjUO52_X -->
+            <section class="submit-container"
+                     fxLayout="column"
+                     fxLayoutAlign="space-evenly center"
+                     fxLayoutGap="20px">
+               <button type="submit"
+                       mat-raised-button
+                       color="accent"
+                       [disabled]="myForm.invalid">SIGN UP
+               </button>
+            </section>
+
+         </form>
 
          <section class="terms-conditions-note">BY CLICKING THIS BUTTON YOU
             AGREE TO OUR
             <a href="#">TERMS AND CONDITIONS </a>
          </section>
 
-      </form>
-   </mat-card-content>
 
-   <mat-card-footer>
-      <div fxLayout="row"
-           fxLayoutAlign="center center"
-           fxLayoutGap="12px">
-         <section fxFlex="50%"
-                  fxFlexAlign="center">
-            <a routerLink="/login">SIGN IN</a>
-         </section>
-         <section fxFlex="50%"
-                  fxFlexAlign="center">
-            <a routerLink="/forgot">FORGOT PASSWORD</a>
-         </section>
-      </div>
-   </mat-card-footer>
-</mat-card>
+      </mat-card-content>
+
+   </mat-card>
+
+</section>

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidebarNavLink } from './side-bar-link.component';
+import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs';
+
 
 interface SidebarNavGroup {
    heading: string;
@@ -11,11 +14,13 @@ interface SidebarNavGroup {
    templateUrl: './sidebar.component.html',
    styleUrls: ['./sidebar.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, OnDestroy {
    activePanel: string;
+   isLoggedIn$: Observable<boolean>;
+
    private sideNav: SidebarNavGroup[] = [
       {
-         heading: "Navigation",
+         heading: "Services",
          panels: [
             {
                title: "Dashboard",
@@ -87,9 +92,15 @@ export class SideBarComponent implements OnInit {
       }
    ];
 
-   constructor() { }
+   constructor(private authService: AuthService) { }
 
    ngOnInit() {
+      this.isLoggedIn$ = this.authService.isLoggedIn;
+   }
+
+
+   ngOnDestroy() {
+
    }
 
    logOut() {

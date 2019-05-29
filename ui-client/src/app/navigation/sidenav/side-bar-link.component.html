@@ -1,12 +1,12 @@
 <hr *ngIf="separator; else navLink">
 <ng-template #navLink>
    <a mat-list-item
-      style="font-size: 12px"
       routerLink="{{route}}"
       [routerLinkActive]="route ? ['active'] : ['']"
       [ngClass]="{'mainPanel': !isSubpanel,
-                   'subPanel': isSubpanel}">
-      <mat-icon class="{{iconStyle}}">{{icon}}</mat-icon>
+      'subPanel': isSubpanel}">
+      <!-- <mat-icon class="{{iconStyle}}">{{icon}}</mat-icon> -->
+      <mat-icon>{{icon}}</mat-icon>
       <div class="linkText">{{title}}</div>
    </a>
 </ng-template>

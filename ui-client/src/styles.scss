@@ -1,12 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-//@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
-$color-netsfere-base: #de4858;
+//@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/theming';
+@import 'styles/themes';
+
+// Global Colors
 $white              : #ffffff;
 $black              : #000000;
 $offwhite           : #f6f7f9;
 $bright_silver      : #f3f6fe;
-$netsfere_red       : $color-netsfere-base;
+$netsfere_red       : #de4858;
 $gunmetal_gray      : #2d2d2d;
 $dark_neutral_gray  : #373737;
 $charcoal_gray      : #272727;
@@ -16,14 +19,35 @@ $silver             : #d3d6de;
 $cool_gray          : #515769;
 $medium_neutral_gray: #656565;
 
-html,
-body {
-   height: 100%;
-}
 
 body {
+   height     : 100%;
    margin     : 0;
    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* width */
+*::-webkit-scrollbar {
+   width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+   box-shadow      : inset 0 0 5px mat-color($default_primary);
+   border-radius   : 10px;
+   background-color: mat-color($default_primary, lighter);
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+   background   : mat-color($default_primary);
+   box-shadow   : inset 0 0 5px mat-color($default_primary, darker);
+   border-radius: 10px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+   background: mat-color($default_primary, darker);
 }
 
 .auth-forms {
@@ -39,12 +63,12 @@ body {
    margin: 50px auto;
 
    [mat-raised-button] {
-      background-color: rgb(222, 72, 88) !important;
+      background-color: $netsfere_red !important;
       color           : white !important;
    }
 
    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-      background-color: $color-netsfere-base !important;
+      background-color: $netsfere_red !important;
    }
 
    [mat-raised-button][disabled] {

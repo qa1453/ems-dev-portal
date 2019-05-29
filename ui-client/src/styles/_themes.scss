@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+@import 'palettes';
+
+$default_primary: mat-palette($mat-my-indigo);
+$default_accent: mat-palette($mat-my-pink, A200, A100, A400);
+$default_theme: mat-light-theme($default_primary, $default_accent);

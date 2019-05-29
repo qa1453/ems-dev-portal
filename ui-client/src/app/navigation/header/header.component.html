@@ -1,39 +1,120 @@
-<mat-toolbar color="primary">
+<mat-toolbar *ngIf="!(isLoggedIn$ | async)"
+             class="mat-toolbar"
+             fxLayout="row"
+             fxLayoutAlign="space-between center">
 
-   <button type="button"
-           aria-label="Toggle sidenav"
-           mat-icon-button
-           (click)="toggleSidebarCollapse()">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-   </button>
-   <span>DEV<br>PORTAL</span>
-   <span class="shift-remaining-right"></span>
-   <ul>
-      <li>
+   <div fxFlex="none">
+      <app-logo></app-logo>
+   </div>
 
-
-         <span>
-            <a routerLink="signup">
-               <button type="submit"
-                       aria-label="SIGN UP"
-                       color="accent"
-                       mat-raised-button>
-                  SIGNUP
+   <div fxFlex>
+      <ul fxLayout="row"
+          fxLayoutAlign="center center">
+         <li class="toolbar-link">
+            <a mat-button
+               [matMenuTriggerFor]="menu">PRODUCT</a>
+            <mat-menu #menu="matMenu">
+               <button mat-menu-item
+                       class="mat-menu-item">
+                  <mat-icon>chat_bubble_outline</mat-icon>SMS
                </button>
+               <button mat-menu-item>
+                  <mat-icon>security</mat-icon>Authenticate
+               </button>
+               <button mat-menu-item>
+                  <mat-icon>thumb_up_alt</mat-icon>Validate
+               </button>
+               <button mat-menu-item>
+                  <mat-icon>explore</mat-icon>Lookup
+               </button>
+               <button mat-menu-item>
+                  <mat-icon>computer</mat-icon>Numbers
+               </button>
+            </mat-menu>
+         </li>
+         <li class="toolbar-link">
+            <a mat-button
+               routerLink="usecases">USE CASES</a>
+         </li>
+         <li class="toolbar-link">
+            <a mat-button
+               routerLink="documents">DOCUMENTS</a>
+         </li>
+         <li class="toolbar-link">
+            <a mat-button
+               routerLink="pricing">PRICING</a>
+         </li>
+         <li class="toolbar-link">
+            <a mat-button
+               routerLink="company">COMPANY</a>
+         </li>
+         <li class="toolbar-link">
+            <a mat-button
+               routerLink="help">HELP</a>
+         </li>
+      </ul>
+   </div>
+
+   <div fxFlex="nogrow">
+      <ul fxLayout="row"
+          fxLayoutAlign="center center">
+         <li class="toolbar-link login-link">
+            <a mat-button
+               routerLink="/login">LOGIN
             </a>
-         </span>
-      </li>
-      <li>
-         <span>
-            <a routerLink="/login">LOGIN </a>
-         </span>
-      </li>
-      <li>
-         <button type="button"
+         </li>
+         <li class="toolbar-link signup-link">
+            <a mat-button
+               routerLink="signup">TRY IT NOW
+            </a>
+         </li>
+      </ul>
+   </div>
+</mat-toolbar>
+
+
+<!-- Logged In Tool Bar 
+ ToggleButton  Logo  ... Logout on far right
+-->
+
+<mat-toolbar class="mat-toolbar"
+             *ngIf="isLoggedIn$ | async"
+             fxLayout="row"
+             fxLayoutAlign="space-between stretch">
+
+   <!-- this div is left justified -->
+   <div fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+      <button type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="toggleSidebarCollapse()">
+         <mat-icon aria-label="Side Nav Toggle ICON">menu</mat-icon>
+      </button>
+
+      <div fxFlex="none">
+         <app-logo></app-logo>
+      </div>
+   </div>
+
+   <!-- this div is right justified in outer container -->
+   <!-- the contents of this div are -->
+   <div fxLayout="row"
+        fxLayoutAlign="space-around center"
+        fxLayOutGap="20px">
+      <div>
+         <span class="userNameSpan">{{ getUserEmail() }} </span>
+      </div>
+      <div>
+         <button type="butto) }} n"
                  aria-label="Logout"
-                 mat-icon-button>
-            <mat-icon aria-label="Logout">power_settings_new</mat-icon>
+                 mat-icon-button
+                 (click)="authService.logout()">
+            <mat-icon aria-label="Logout">
+               power_settings_new
+            </mat-icon>
          </button>
-      </li>
-   </ul>
+      </div>
+   </div>
 </mat-toolbar>

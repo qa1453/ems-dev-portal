@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/shared/services/users.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -8,10 +8,8 @@ import { UsersService } from 'src/app/shared/services/users.service';
    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-   usersService: UsersService;
 
-   constructor(usersService: UsersService) {
-      this.usersService = usersService;
+   constructor(private authService: AuthService) {
    }
 
    ngOnInit() {

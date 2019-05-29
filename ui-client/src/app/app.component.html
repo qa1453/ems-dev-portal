@@ -1,6 +1,6 @@
-<mat-sidenav-container *ngIf="loggedIn; else loginBlock"
-                       class="sidenav-container">
+<mat-sidenav-container class="sidenav-container">
    <mat-sidenav #drawer
+                *ngIf="isLoggedIn$ | async"
                 class="sidenav"
                 fixedInViewport="true"
                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -9,23 +9,8 @@
       <app-sidebar></app-sidebar>
    </mat-sidenav>
    <mat-sidenav-content>
-      <app-header *ngIf="loggedIn"
-                  (toggleSidebar)="drawer.toggle()">
+      <app-header (toggleSidebar)="toggleDrawer(drawer)">
       </app-header>
       <router-outlet></router-outlet>
    </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <ng-template #loginBlock>
-   <div class="top-nav-bar-login">
-      <app-top-nav-bar-login></app-top-nav-bar-login>
-   </div>
-   <div class="login">
-      <div class="col-sm-12 background-color-1">
-         <app-login></app-login>
-      </div>
-   </div>
-   <div class="footer">
-      <app-footer></app-footer>
-   </div>
-</ng-template> -->

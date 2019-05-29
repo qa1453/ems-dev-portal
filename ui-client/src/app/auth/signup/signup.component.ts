@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+
+
 // import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+// import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 @Component({
    selector: 'app-signup',
@@ -10,21 +14,26 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 })
 export class SignupComponent implements OnInit {
 
-
-
    passwordFieldType: string = "password";
    passwordFieldIcon: string = "visibility_off";
+   password2FieldType: string = "password";
+   password2FieldIcon: string = "visibility_off";
    myForm: FormGroup;
 
-   constructor() { }
+
+   constructor(private authService: AuthService, private router: Router) {
+   }
 
    ngOnInit() {
       //  recaptcha: new FormControl(null, Validators.required)
       this.myForm = new FormGroup({
+         firstName: new FormControl(),
+         lastName: new FormControl(),
          email: new FormControl(null,
             { validators: [Validators.required, Validators.email] }),
          password: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(6)] }),
+         password2: new FormControl(),
          company: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(3)] })
       });
@@ -44,31 +53,19 @@ export class SignupComponent implements OnInit {
       const value = control.value || '';
       console.log("Validating password! " + value);
       return null;
-
-      if (value.length < 8) {
-         console.warn("Failed Length Check");
-         return { password: { description: 'Password is too short' } };
-      }
-      if (value.match(/[ ]/)) {
-         console.warn("Failed space Check");
-         return { password: { description: 'Password must not contain spaces' } };
-      }
-      if (!value.match(/[A-Z]/)) {
-         console.warn("Failed UpperCaseChar Check");
-         return { password: { description: 'Password must contain one uppercase character' } };
-      }
-      if (!value.match(/[\d]/)) {
-         console.warn("Failed numberic char check");
-         return { password: { description: 'Password must contain one number' } };
-      }
-
-      // if (!value.match(/[^a-z0-9]/))
-      //    return { password: { description: 'Password must contain one non alphanumberic character' } };
-      return null;
    }
 
    formSubmit() {
-      console.log(this.myForm);;
+
+      console.log(this.myForm);
+
+      const result = this.authService.signup(this.myForm.value);
+      if (result) {
+         alert(`SIGNUP Accepted for user ${this.myForm.value.email}`);
+         this.router.navigate(['/home']);
+      } else {
+         alert("Invalid User: " + this.myForm.value.email);
+      }
    }
 
    togglePasswordVisibility() {
@@ -80,4 +77,14 @@ export class SignupComponent implements OnInit {
          this.passwordFieldIcon = "visibility_off";
       }
    }
+   togglePassword2Visibility() {
+      if (this.password2FieldType == "password") {
+         this.password2FieldType = "text";
+         this.password2FieldIcon = "visibility_on"
+      } else {
+         this.password2FieldType = "password";
+         this.password2FieldIcon = "visibility_off";
+      }
+   }
 }
+
