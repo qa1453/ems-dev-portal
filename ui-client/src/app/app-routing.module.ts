@@ -32,7 +32,8 @@ const routes: Routes = [
       CommonModule,
       RouterModule.forRoot(routes)
    ],
-   exports: [RouterModule],
-   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
+   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+//, providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]

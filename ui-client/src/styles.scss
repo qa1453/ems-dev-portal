@@ -27,28 +27,28 @@ body {
 }
 
 /* width */
-*::-webkit-scrollbar {
-   width: 10px;
-}
+// *::-webkit-scrollbar {
+//    width: 10px;
+// }
 
 /* Track */
-*::-webkit-scrollbar-track {
-   box-shadow      : inset 0 0 5px mat-color($default_primary);
-   border-radius   : 10px;
-   background-color: mat-color($default_primary, lighter);
-}
+// *::-webkit-scrollbar-track {
+//    box-shadow      : inset 0 0 5px mat-color($default_primary);
+//    border-radius   : 10px;
+//    background-color: mat-color($default_primary, lighter);
+// }
 
 /* Handle */
-*::-webkit-scrollbar-thumb {
-   background   : mat-color($default_primary);
-   box-shadow   : inset 0 0 5px mat-color($default_primary, darker);
-   border-radius: 10px;
-}
+// *::-webkit-scrollbar-thumb {
+//    background   : mat-color($default_primary);
+//    box-shadow   : inset 0 0 5px mat-color($default_primary, darker);
+//    border-radius: 10px;
+// }
 
 /* Handle on hover */
-*::-webkit-scrollbar-thumb:hover {
-   background: mat-color($default_primary, darker);
-}
+// *::-webkit-scrollbar-thumb:hover {
+//    background: mat-color($default_primary, darker);
+// }
 
 .auth-forms {
    max-width       : 350px;

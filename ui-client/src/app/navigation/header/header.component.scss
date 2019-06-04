@@ -5,7 +5,7 @@
    position        : fixed;
    top             : 0;
    left            : 0;
-   z-index         : 1;
+   z-index         : 5;
    height          : 64px;
    box-shadow      : 0px 10px 40px -10px $silver;
 
@@ -29,12 +29,13 @@
       }
    }
 
-   .toolbar-link.signup-link {
-      background-color: $netsfere_red;
+   .login-link {
+      color: $netsfere_red;
+   }
 
-      a {
-         color: white;
-      }
+   .signup-button {
+      background-color: $netsfere_red;
+      color           : white;
    }
 
    .logo-topline {

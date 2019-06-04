@@ -1,49 +1,84 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { SignupInterface } from './signup-interface';
 import { LoginInterface } from './login-interface';
+import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { AuthStates, UserAuthInfo } from './authstates.enum';
+
+const USER_AUTH_STORAGE_KEY = 'DEVPORTAL_USER_AUTH_STATE';
 
 @Injectable({
    providedIn: 'root'
 })
 export class AuthService {
 
-   private loggedIn = new BehaviorSubject<boolean>(false);
-   private curUser: string = null;
+   private curUser: UserAuthInfo = null;
+   private curUserSub = new BehaviorSubject<UserAuthInfo>(this.curUser);
 
-   constructor(private router: Router) {
+   constructor(
+      @Inject(LOCAL_STORAGE) private storageService: StorageService,
+      private router: Router) {
+
+      this.curUser = this.storageService.get(USER_AUTH_STORAGE_KEY);
+      if (!this.curUser) {
+         this.initCurUserObj();
+         this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+      }
+      this.curUserSub.next(this.curUser);
    }
 
-   get isLoggedIn() {
-      return this.loggedIn.asObservable();
+   // Standard "getter" that is called when another piece of code references
+   // this element as a variable (i.e. not referenced as a function call)
+   // can be referenced in templates or other TS code.
+   get userInfo() {
+      return this.curUserSub.asObservable();
    }
 
    signup(user: SignupInterface): boolean {
+      let retVal = false;
+
       if (user.email !== '' && user.password !== '') {
-         this.loggedIn.next(true);
-         this.curUser = user.email;
-         return true;
-      } else {
-         this.curUser = null;
-         return false;
+         this.curUser = {
+            state: AuthStates.emailConfirmPending,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname
+         };
+         this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+         this.curUserSub.next(this.curUser);
+         retVal = true;
       }
+
+      return retVal;
    }
 
    login(user: LoginInterface) {
-      this.loggedIn.next(true);
-      this.curUser = user.email;
+      this.curUser.state = AuthStates.loggedIn;
+      this.curUser.email = user.email;
+      this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+      this.curUserSub.next(this.curUser);
       return true;
    }
 
    getUserEmail(): string {
-      return this.curUser;
+      return this.curUser.email;
    }
 
    logout() {
-      this.loggedIn.next(false);
-      this.curUser = null;
+      this.initCurUserObj();
+      this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+      this.curUserSub.next(this.curUser);
       this.router.navigate(['/splash']);
+   }
+
+   private initCurUserObj() {
+      this.curUser = {
+         state: AuthStates.loggedOut,
+         email: "",
+         firstname: "",
+         lastname: ""
+      };
    }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs/Subscription';
+import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
 import { Observable } from 'rxjs';
 
 
@@ -12,13 +14,15 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
 
    @Output() toggleSidebar = new EventEmitter<void>();
-   isLoggedIn$: Observable<boolean>;
+   AuthStates = AuthStates;
+   userAuthInfo$: Observable<UserAuthInfo>;
 
 
-   constructor(private authService: AuthService) { }
+   constructor(private authService: AuthService) {
+   }
 
    ngOnInit() {
-      this.isLoggedIn$ = this.authService.isLoggedIn;
+      this.userAuthInfo$ = this.authService.userInfo;
    }
 
    toggleSidebarCollapse(): void {
@@ -26,7 +30,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
    }
 
    ngOnDestroy() {
-
    }
 
    getUserEmail() {

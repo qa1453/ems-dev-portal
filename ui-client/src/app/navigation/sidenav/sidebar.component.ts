@@ -1,13 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidebarNavLink } from './side-bar-link.component';
 import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs/Subscription';
+import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
 import { Observable } from 'rxjs';
+import { SidebarNavGroup, SideBarMenu } from './sidebar.model';
 
-
-interface SidebarNavGroup {
-   heading: string;
-   panels: SidebarNavLink[];
-}
 
 @Component({
    selector: 'app-sidebar',
@@ -16,93 +14,18 @@ interface SidebarNavGroup {
 })
 export class SideBarComponent implements OnInit, OnDestroy {
    activePanel: string;
-   isLoggedIn$: Observable<boolean>;
+   AuthStates = AuthStates;
+   userAuthInfo$: Observable<UserAuthInfo>;
+   private sideNav: SidebarNavGroup[] = [];
 
-   private sideNav: SidebarNavGroup[] = [
-      {
-         heading: "Services",
-         panels: [
-            {
-               title: "Dashboard",
-               icon: "home",
-               iconStyle: "outlined",
-               route: "/dashboard"
-            },
-            {
-               title: "Programmable SMS",
-               icon: "chat_bubble_outline",
-               route: "/messagelog"
-            },
-            {
-               title: "Authenticate",
-               icon: "security",
-               route: "/authenticate"
-            },
-            {
-               title: "Validate",
-               icon: "security",
-               route: "/vadlidate"
-            },
-            {
-               title: "Numbers",
-               icon: "thumb_up_alt",
-               route: "/numbers"
-            },
-            {
-               title: "Message Log",
-               icon: "message",
-               route: "/messagelog"
-            },
-            {
-               title: "Analytics",
-               icon: "trending_up",
-               route: "/analytics",
-               subPanels: [
-                  {
-                     title: "tmp1", icon: "", isSubpanel: true
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         heading: "Account",
-         panels: [
-            {
-               title: "Notifications",
-               icon: "notifications",
-               iconStyle: "outlined",
-            },
-            {
-               title: "Settings",
-               icon: "settings",
-               iconStyle: "outlined",
-            },
-            {
-               title: "API Docs",
-               icon: "description",
-               iconStyle: "outlined",
-            },
-            {
-               title: "Help",
-               icon: "help_outline",
-               iconStyle: "outlined"
-            }
-         ]
-      }
-   ];
-
-   constructor(private authService: AuthService) { }
+   constructor(private authService: AuthService, private sideBarMenu: SideBarMenu) {
+      this.sideNav = this.sideBarMenu.getSideNav();
+   }
 
    ngOnInit() {
-      this.isLoggedIn$ = this.authService.isLoggedIn;
+      this.userAuthInfo$ = this.authService.userInfo;
    }
-
 
    ngOnDestroy() {
-
-   }
-
-   logOut() {
    }
 }

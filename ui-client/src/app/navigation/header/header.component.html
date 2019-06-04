@@ -1,13 +1,14 @@
-<mat-toolbar *ngIf="!(isLoggedIn$ | async)"
+<mat-toolbar *ngIf="(userAuthInfo$ | async)?.state === AuthStates.loggedOut"
              class="mat-toolbar"
              fxLayout="row"
-             fxLayoutAlign="space-between center">
+             fxLayoutAlign="space-evenly center">
 
-   <div fxFlex="none">
+   <div fxFlex="25">
       <app-logo></app-logo>
    </div>
 
-   <div fxFlex>
+   <div fxFlex="50"
+        fxHide.lt-md>
       <ul fxLayout="row"
           fxLayoutAlign="center center">
          <li class="toolbar-link">
@@ -55,18 +56,19 @@
       </ul>
    </div>
 
-   <div fxFlex="nogrow">
+   <div fxFlex="25">
       <ul fxLayout="row"
           fxLayoutAlign="center center">
-         <li class="toolbar-link login-link">
+         <li class="login-link">
             <a mat-button
                routerLink="/login">LOGIN
             </a>
          </li>
-         <li class="toolbar-link signup-link">
-            <a mat-button
-               routerLink="signup">TRY IT NOW
-            </a>
+         <li>
+            <button mat-raised-button
+                    class="signup-button"
+                    routerLink="/signup">TRY IT NOW
+            </button>
          </li>
       </ul>
    </div>
@@ -78,7 +80,7 @@
 -->
 
 <mat-toolbar class="mat-toolbar"
-             *ngIf="isLoggedIn$ | async"
+             *ngIf="(userAuthInfo$ | async)?.state !== AuthStates.loggedOut"
              fxLayout="row"
              fxLayoutAlign="space-between stretch">
 
@@ -115,6 +117,16 @@
                power_settings_new
             </mat-icon>
          </button>
+      </div>
+      <div>
+         <!--                <button type="butto) }} n"
+                       aria-label="Logout"
+                       mat-icon-button
+                       (click)="authService.logout()"> -->
+         <mat-icon aria-label="Notification">
+            announcement
+         </mat-icon>
+         <!--   </button> -->
       </div>
    </div>
 </mat-toolbar>

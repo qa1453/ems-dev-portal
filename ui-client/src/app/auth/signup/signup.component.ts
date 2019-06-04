@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { CountryCodesService } from '../countrycodes.service';
+import { ICountries, ICallingCodes } from '../countries-interface';
+import { map } from 'rxjs/operators';
 
 
 // import { RecaptchaModule } from 'ng-recaptcha';
@@ -14,14 +17,20 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
 
+   formFieldAppearance: string = "legacy"; // or standard|fill|outline
    passwordFieldType: string = "password";
    passwordFieldIcon: string = "visibility_off";
    password2FieldType: string = "password";
    password2FieldIcon: string = "visibility_off";
+   public countries: ICountries[];
+   public callingCodes: ICallingCodes[];
    myForm: FormGroup;
 
 
-   constructor(private authService: AuthService, private router: Router) {
+   constructor(
+      private authService: AuthService,
+      private router: Router,
+      private countryCodeService: CountryCodesService) {
    }
 
    ngOnInit() {
@@ -34,10 +43,41 @@ export class SignupComponent implements OnInit {
          password: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(6)] }),
          password2: new FormControl(),
-         company: new FormControl(null,
-            { validators: [Validators.required, Validators.minLength(3)] })
+         company: new FormControl(null),
+         country: new FormControl(null,
+            { validators: [Validators.required] }),
+         cc: new FormControl(null,
+            { validators: [Validators.required] }),
+         phone: new FormControl(null,
+            { validators: [Validators.required] })
+      });
+
+      this.countryCodeService.getCountries()
+         .subscribe(data => {
+            this.countries = data;
+         });
+
+      this.countryCodeService.getCallingCodes()
+         .subscribe(data => {
+            this.callingCodes = data;
+         });
+
+      // setup event handlers to handle changes to form.
+      this.onChanges();
+   }
+
+   onChanges(): void {
+      // when the country code is selected, update the calling code for the selected country
+      // Need to first find the long country name given the abbreivation.
+      // Then, using the long country name, I can find the calling code.
+      this.myForm.get('country').valueChanges.subscribe(val => {
+         // console.log("Country: " + val);
+         // const countryObj = this.countries.filter(obj => obj.abbreviation == val);
+         const callingCodeObj = this.callingCodes.filter(obj => obj.country == val);
+         this.myForm.get('cc').setValue(callingCodeObj[0].calling_code);
       });
    }
+
 
    resolved(captchaResponse: string) {
       console.log(`Resolved captcha with response ${captchaResponse}:`);

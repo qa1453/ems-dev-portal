@@ -1,8 +1,12 @@
+<section class="signup-container-background"></section>
 <section class="signup-container"
-         fxLayout="row"
-         fxLayoutAlign="center center">
+         fxLayout="column"
+         fxLayoutAlign="space-around center"
+         style="overflow-y: auto">
 
-   <mat-card class="signup_form">
+   <mat-card class="signup_form"
+             fxLayout="column"
+             fxLayoutAlign="space-around center">
       <mat-card-header fxLayout="column"
                        fxLayoutAlign="center center"
                        fxLayoutGap>
@@ -15,86 +19,137 @@
                Get an API key and send SMS for free! No credit card required.
             </mat-card-subtitle>
          </div>
-
       </mat-card-header>
 
       <mat-card-content>
          <form [formGroup]="myForm"
                fxLayout="column"
-               fxLayoutAlign="space-around stretch"
-               fxLayoutGapp="2px"
+               fxLayoutAlign="space-between stretch"
+               fxLayoutGap="8px"
                (ngSubmit)="formSubmit()">
 
-            <mat-form-field>
-               <input type="text"
-                      matInput
-                      placeholder="first name"
-                      formControlName="firstName">
-               <mat-error>Missing first name</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-               <input type="text"
-                      matInput
-                      placeholder="last name"
-                      formControlName="lastName">
-               <mat-error>Missing last name</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-               <input type="email"
-                      matInput
-                      placeholder="email"
-                      formControlName="email">
-               <!-- <mat-hint>Please enter a valid email</mat-hint> -->
-               <mat-error>Invalid/missing email</mat-error>
-            </mat-form-field>
+            <section fxLayout="row"
+                     fxLayoutAlign="space-between center"
+                     fxLayoutGap="8px">
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>First name*</mat-label>
+                  <input type="text"
+                         matInput
+                         placeholder="first name"
+                         formControlName="firstName">
+                  <mat-error>Missing first name</mat-error>
+               </mat-form-field>
 
-            <mat-form-field>
-               <input type="{{ passwordFieldType }}"
-                      matInput
-                      placeholder="password"
-                      formControlName="password">
-               <button matSuffix
-                       mat-icon-button
-                       (click)="togglePasswordVisibility()">
-                  <mat-icon>{{ passwordFieldIcon }}</mat-icon>
-               </button>
-               <!-- <mat-hint>Please enter your password</mat-hint> -->
-               <mat-error>Invalid/missing password!</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-               <input type="{{ password2FieldType }}"
-                      matInput
-                      placeholder="password (confirmed)"
-                      formControlName="password2">
-               <button matSuffix
-                       mat-icon-button
-                       (click)="togglePassword2Visibility()">
-                  <mat-icon>{{ passwordFieldIcon }}</mat-icon>
-               </button>
-               <!-- <mat-hint>Please enter your password</mat-hint> -->
-               <mat-error>Invalid/missing password!</mat-error>
-            </mat-form-field>
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>Last name*</mat-label>
+                  <input type="text"
+                         matInput
+                         placeholder="last name"
+                         formControlName="lastName">
+                  <mat-error>Missing last name</mat-error>
+               </mat-form-field>
+            </section>
 
-            <mat-form-field>
+            <section fxLayout="row"
+                     fxLayoutAlign="space-between center"
+                     fxLayoutGap="8px">
+               <mat-form-field appearance="{{ formFieldAppearance }}"
+                               style="width:100%">
+                  <mat-label>Email*</mat-label>
+                  <input type="email"
+                         matInput
+                         placeholder="email"
+                         formControlName="email">
+                  <mat-error>Invalid/missing email</mat-error>
+               </mat-form-field>
+            </section>
+
+            <section fxLayout="row"
+                     fxLayoutAlign="space-between center"
+                     fxLayoutGap="8px">
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>Password*</mat-label>
+                  <input type="{{ passwordFieldType }}"
+                         matInput
+                         placeholder="password"
+                         formControlName="password">
+                  <button type="button"
+                          matSuffix
+                          mat-icon-button
+                          (click)="togglePasswordVisibility()">
+                     <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+                  </button>
+                  <!-- <mat-hint>Please enter your password</mat-hint> -->
+                  <mat-error>Invalid/missing password!</mat-error>
+               </mat-form-field>
+
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>Password (confirmed)*</mat-label>
+                  <input type="{{ password2FieldType }}"
+                         matInput
+                         placeholder="password (confirmed)"
+                         formControlName="password2">
+                  <button type="button"
+                          matSuffix
+                          mat-icon-button
+                          (click)="togglePassword2Visibility()">
+                     <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+                  </button>
+                  <!-- <mat-hint>Please enter your password</mat-hint> -->
+                  <mat-error>Invalid/missing password!</mat-error>
+               </mat-form-field>
+            </section>
+
+            <!-- Country, Country Code, and Phone Number-->
+            <div fxLayout="row"
+                 fxLayoutAlign="none center"
+                 fxLayoutGap="8px">
+
+               <div class="expandable">
+                  <mat-form-field appearance="{{ formFieldAppearance }}">
+                     <mat-label>Country*</mat-label>
+                     <mat-select formControlName="country">
+                        <mat-option *ngFor="let country of countries"
+                                    value="{{country.country}}">
+                           "{{country.country}}"</mat-option>
+
+                     </mat-select>
+                  </mat-form-field>
+               </div>
+
+               <mat-form-field fxFlex="10"
+                               appearance="{{ formFieldAppearance }}">
+                  <mat-label>cc*</mat-label>
+                  <input matInput
+                         value=""
+                         formControlName="cc">
+               </mat-form-field>
+               <mat-form-field fxFlex
+                               appearance="{{ formFieldAppearance }}">
+                  <mat-label>Phone number*</mat-label>
+                  <input matInput
+                         placeholder="phone"
+                         value=""
+                         formControlName="phone">
+               </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-label>Company (optional)</mat-label>
                <input type="text"
                       matInput
                       placeholder="company"
                       formControlName="company">
-               <button matSuffix
-                       mat-icon-button>
-                  <mat-icon>business</mat-icon>
-               </button>
-               <!-- <mat-hint>Please enter your company name</mat-hint> -->
-               <mat-error>Missing Company name!</mat-error>
             </mat-form-field>
 
             <!-- formControlName="recaptcha" -->
-
-            <re-captcha class="g-recaptcha"
-                        required
-                        (resolve)="resolve($event)"
-                        siteKey="6Lds-mcUAAAAAAoOoz1jA7XNm88G-dMs60Ub7OZe">
-            </re-captcha>
+            <section style="max-width:100%">
+               <re-captcha class="g-recaptcha"
+                           required
+                           (resolve)="resolve($event)"
+                           siteKey="6Lds-mcUAAAAAAoOoz1jA7XNm88G-dMs60Ub7OZe">
+               </re-captcha>
+            </section>
 
 
 

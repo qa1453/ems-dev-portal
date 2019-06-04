@@ -1,0 +1,19 @@
+auth Service:
+
+   import { BehaviorSubject } from 'rxjs';
+   private loggedIn = new BehaviorSubject<boolean>(false);
+
+   get isLoggedIn() {
+      return this.loggedIn.asObservable();
+   }
+
+header.component.ts 
+   import { Observable } from 'rxjs';
+   isLoggedIn$: Observable<boolean>;
+
+   ngOnInit() {
+      this.isLoggedIn$ = this.authService.isLoggedIn;
+   }
+
+header.component.html
+ *ngIf="!(isLoggedIn$ | async)"

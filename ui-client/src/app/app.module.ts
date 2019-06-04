@@ -15,12 +15,15 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { NavigationModule } from './navigation/navigation.module';
 import { AuthService } from './auth/auth.service';
 import { SplashComponent } from './core/splash/splash.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UsecasesModule } from './app-features/usecases/usecases.module';
 import { DocumentsModule } from './app-features/documents/documents.module';
 import { PricingModule } from './app-features/pricing/pricing.module';
 import { CompanyModule } from './app-features/company/company.module';
 import { HelpModule } from './app-features/help/help.module';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { SideBarMenu } from './navigation/sidenav/sidebar.model';
 
 
 @NgModule({
@@ -41,6 +44,8 @@ import { HelpModule } from './app-features/help/help.module';
       FormsModule,
       ReactiveFormsModule,
       FlexLayoutModule,
+      StorageServiceModule,
+      HttpClientModule,
       RecaptchaModule,
       NavigationModule,
       UsecasesModule,
@@ -49,7 +54,7 @@ import { HelpModule } from './app-features/help/help.module';
       CompanyModule,
       HelpModule
    ],
-   providers: [AuthService],
+   providers: [AuthService, SideBarMenu],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 <hr *ngIf="separator; else navLink">
 <ng-template #navLink>
    <a mat-list-item
+      class="mat-list-item"
       routerLink="{{route}}"
       [routerLinkActive]="route ? ['active'] : ['']"
       [ngClass]="{'mainPanel': !isSubpanel,

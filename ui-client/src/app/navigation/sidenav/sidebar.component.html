@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn$ | async">
+<div *ngIf="(userAuthInfo$ | async)?.state === AuthStates.loggedIn">
    <mat-nav-list *ngFor="let navGroup of sideNav">
       <p *ngIf="navGroup.heading != 'None'">{{navGroup.heading}}</p>
       <ng-container *ngFor="let link of navGroup.panels">

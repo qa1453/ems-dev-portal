@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { AuthStates } from './authstates.enum';
 
 @Injectable({
    providedIn: 'root'
@@ -21,20 +22,23 @@ export class AuthGuard implements CanActivate {
    ) {
       // 
    }
+
    canActivate(
-      next: ActivatedRouteSnapshot,
+      route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      return this.authService.isLoggedIn
-         .pipe(
-            take(1),
-            map((isLoggedIn: boolean) => {
-               if (!isLoggedIn) {
-                  this.router.navigate(['/splash']);
-                  return false;
-               }
-               return true;
-            })
-         );
+      // let requiredAuthState = route.data.authState || AuthStates.loggedOut;
+      return true;
+      // return this.authService.authUserSubject 
+      //    .pipe(
+      //       take(1),
+      //       map((userAuthInfo: UserAuthInfo) => {
+      //          if (authStates != requiredAuthState) {
+      //             this.router.navigate(['/splash']);
+      //             return false;
+      //          }
+      //          return true;
+      //       })
+      //    );
    }
 }
