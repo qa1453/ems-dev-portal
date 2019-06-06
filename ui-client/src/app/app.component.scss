@@ -2,22 +2,23 @@
 
 .sidenav-container {
    position: fixed;
-   height  : calc(100% - 64px);
+   height  : calc(100% - 50px);
    width   : 100%;
    bottom  : 0;
 
    .sidenav {
       position        : absolute;
       width           : 200px;
-      background-color: $gunmetal_gray;
+      padding-top     : 10px;
+      background-color: mat-color(map-get($dark_theme, primary), 600) !important;
    }
 
-   .dont-display {
-      display: none;
+   app-side-bar {
+      padding-top: 10px;
    }
 
    mat-sidenav-content,
    router-outlet {
-      background-color: $bright_silver;
+      //background-color: $bright_silver;
    }
 }

@@ -1,22 +1,17 @@
- @import "src/styles.scss";
- @import "src/styles/themes";
+  @import "src/styles.scss";
 
- mat-nav-list {
-    width: 100%;
+  // Theming variables
+  $theme  : $dark_theme;
+  $primary: map-get($theme, primary);
+  $accent : map-get($theme, accent);
 
-    p {
-       color       : $white;
-       font-weight : bold;
-       padding-left: 20px;
-    }
+  .mat-nav-list {
+     padding-top: 0;
+     width      : 100%;
 
-    &.bottom {
-       position        : absolute;
-       bottom          : 0;
-       background-color: $gunmetal_gray;
-    }
- }
-
- .mat-list-base .mat-list-option {
-    // height: 36px;
- }
+     .mat-divider {
+        width  : 90%;
+        padding: 0;
+        margin : 10px auto;
+     }
+  }

@@ -1,25 +1,30 @@
-import { SidebarNavLink } from './side-bar-link.component';
+export interface SidebarNavLink {
+   title: string;
+   icon: string;
+   iconStyle?: string;
+   route?: string;
+   separator?: boolean;
+   isSubpanel?: boolean;
+   subPanels?: SidebarNavLink[];
+}
 
 export interface SidebarNavGroup {
-   heading: string;
    panels: SidebarNavLink[];
 }
 
 export class SideBarMenu {
    private sideNav: SidebarNavGroup[] = [
       {
-         heading: "Services",
          panels: [
             {
                title: "Dashboard",
                icon: "home",
-               iconStyle: "outlined",
                route: "/dashboard"
             },
             {
                title: "Programmable SMS",
                icon: "chat_bubble_outline",
-               route: "/messagelog"
+               route: "/noroute"
             },
             {
                title: "Authenticate",
@@ -54,27 +59,22 @@ export class SideBarMenu {
          ]
       },
       {
-         heading: "Account",
          panels: [
             {
                title: "Notifications",
-               icon: "notifications",
-               iconStyle: "outlined",
+               icon: "notifications"
             },
             {
                title: "Settings",
-               icon: "settings",
-               iconStyle: "outlined",
+               icon: "settings"
             },
             {
                title: "API Docs",
-               icon: "description",
-               iconStyle: "outlined",
+               icon: "description"
             },
             {
                title: "Help",
-               icon: "help_outline",
-               iconStyle: "outlined"
+               icon: "help_outline"
             }
          ]
       }

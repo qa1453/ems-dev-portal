@@ -2,5 +2,16 @@
 @import 'palettes';
 
 $default_primary: mat-palette($mat-my-indigo);
-$default_accent: mat-palette($mat-my-pink, A200, A100, A400);
-$default_theme: mat-light-theme($default_primary, $default_accent);
+$default_accent : mat-palette($mat-my-pink, A200, A100, A400);
+$default_theme  : mat-light-theme($default_primary, $default_accent);
+
+$light_primary: mat-palette($ems-silver);
+$light_accent : mat-palette($netsfere-red);
+$light_theme  : mat-light-theme($light_primary, $light_accent);
+
+$dark_primary: mat-palette($ems-dark-gray);
+$dark_accent : mat-palette($netsfere-red);
+$dark_theme  : mat-dark-theme($dark_primary, $dark_accent);
+
+// Theme to apply to Material package
+$material_theme: $light_theme;

@@ -1,12 +1,12 @@
 <section class="signup-container-background"></section>
 <section class="signup-container"
          fxLayout="column"
-         fxLayoutAlign="space-around center"
-         style="overflow-y: auto">
+         fxLayoutAlign="space-evenly center">
 
    <mat-card class="signup_form"
              fxLayout="column"
-             fxLayoutAlign="space-around center">
+             fxLayoutAlign="space-evenly center"
+             fxLayoutGap="20px">
       <mat-card-header fxLayout="column"
                        fxLayoutAlign="center center"
                        fxLayoutGap>
@@ -21,32 +21,37 @@
          </div>
       </mat-card-header>
 
-      <mat-card-content>
-         <form [formGroup]="myForm"
+      <mat-card-content fxLayout="column"
+                        fxLayoutAlign="space-around center"
+                        fxLayoutGap="12px">
+         <form [formGroup]="myFormGroup"
                fxLayout="column"
                fxLayoutAlign="space-between stretch"
-               fxLayoutGap="8px"
+               fxLayoutGap="12px"
                (ngSubmit)="formSubmit()">
-
             <section fxLayout="row"
                      fxLayoutAlign="space-between center"
                      fxLayoutGap="8px">
-               <mat-form-field appearance="{{ formFieldAppearance }}">
+
+               <mat-form-field appearance="{{ formFieldAppearance }}"
+                               fxFlex="50">
                   <mat-label>First name*</mat-label>
                   <input type="text"
                          matInput
                          placeholder="first name"
                          formControlName="firstName">
-                  <mat-error>Missing first name</mat-error>
+                  <mat-error>Error in first name (6 to 30 characters)
+                  </mat-error>
                </mat-form-field>
 
-               <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-form-field appearance="{{ formFieldAppearance }}"
+                               fxFlex="50">
                   <mat-label>Last name*</mat-label>
                   <input type="text"
                          matInput
                          placeholder="last name"
                          formControlName="lastName">
-                  <mat-error>Missing last name</mat-error>
+                  <mat-error>Error in last name (6 to 30 characters)</mat-error>
                </mat-form-field>
             </section>
 
@@ -67,9 +72,11 @@
             <section fxLayout="row"
                      fxLayoutAlign="space-between center"
                      fxLayoutGap="8px">
-               <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-form-field appearance="{{ formFieldAppearance }}"
+                               fxFlex="50">
                   <mat-label>Password*</mat-label>
-                  <input type="{{ passwordFieldType }}"
+                  <input type="
+                               {{ passwordFieldType }}"
                          matInput
                          placeholder="password"
                          formControlName="password">
@@ -83,7 +90,8 @@
                   <mat-error>Invalid/missing password!</mat-error>
                </mat-form-field>
 
-               <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-form-field appearance="{{ formFieldAppearance }}"
+                               fxFlex="50">
                   <mat-label>Password (confirmed)*</mat-label>
                   <input type="{{ password2FieldType }}"
                          matInput
@@ -105,26 +113,36 @@
                  fxLayoutAlign="none center"
                  fxLayoutGap="8px">
 
-               <div class="expandable">
+               <div class="expandable"
+                    fxFlex="43">
                   <mat-form-field appearance="{{ formFieldAppearance }}">
-                     <mat-label>Country*</mat-label>
-                     <mat-select formControlName="country">
-                        <mat-option *ngFor="let country of countries"
-                                    value="{{country.country}}">
-                           "{{country.country}}"</mat-option>
-
-                     </mat-select>
+                     <input type="text"
+                            matInput
+                            placeholder="country"
+                            [matAutocomplete]="auto"
+                            formControlName="country"
+                            autocomplete="off"
+                            required>
+                     <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let country of filteredCountries | async"
+                                    [value]="country.country">
+                           {{ country.country }}
+                        </mat-option>
+                     </mat-autocomplete>
+                     <!--                      <mat-error *ngIf="isFieldInvalid('country')">
+                        Please select a country from the list
+                     </mat-error> -->
                   </mat-form-field>
                </div>
 
-               <mat-form-field fxFlex="10"
+               <mat-form-field fxFlex="15"
                                appearance="{{ formFieldAppearance }}">
                   <mat-label>cc*</mat-label>
                   <input matInput
                          value=""
-                         formControlName="cc">
+                         formControlName="calling_code">
                </mat-form-field>
-               <mat-form-field fxFlex
+               <mat-form-field fxFlex="42"
                                appearance="{{ formFieldAppearance }}">
                   <mat-label>Phone number*</mat-label>
                   <input matInput
@@ -143,7 +161,10 @@
             </mat-form-field>
 
             <!-- formControlName="recaptcha" -->
-            <section style="max-width:100%">
+            <section style="max-width:100%"
+                     fxLayout="column"
+                     fxLayoutAlign="center center"
+                     fxLayoutGap="20px">
                <re-captcha class="g-recaptcha"
                            required
                            (resolve)="resolve($event)"
@@ -161,20 +182,17 @@
                <button type="submit"
                        mat-raised-button
                        color="accent"
-                       [disabled]="myForm.invalid">SIGN UP
+                       [disabled]="myFormGroup.invalid">SIGN UP
                </button>
             </section>
-
          </form>
 
+      </mat-card-content>
+      <mat-card-subtitle>
          <section class="terms-conditions-note">BY CLICKING THIS BUTTON YOU
             AGREE TO OUR
             <a href="#">TERMS AND CONDITIONS </a>
          </section>
-
-
-      </mat-card-content>
-
+      </mat-card-subtitle>
    </mat-card>
-
 </section>

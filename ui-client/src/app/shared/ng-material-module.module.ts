@@ -6,6 +6,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { NgModule } from '@angular/core';
+import { NgxMatSelectSearchModule } from '../../../node_modules/ngx-mat-select-search';
 import {
    MatAutocompleteModule,
    MatBadgeModule,
@@ -89,6 +90,7 @@ import {
       MatTreeModule,
       PortalModule,
       ScrollingModule,
+      NgxMatSelectSearchModule
    ]
 })
 export class NgMaterialModule { }

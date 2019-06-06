@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SidebarNavLink } from './side-bar-link.component';
+import { SidebarNavLink } from './sidebar.model';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';

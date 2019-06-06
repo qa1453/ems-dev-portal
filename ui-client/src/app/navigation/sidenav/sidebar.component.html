@@ -1,8 +1,10 @@
 <div *ngIf="(userAuthInfo$ | async)?.state === AuthStates.loggedIn">
-   <mat-nav-list *ngFor="let navGroup of sideNav">
-      <p *ngIf="navGroup.heading != 'None'">{{navGroup.heading}}</p>
+
+   <mat-nav-list *ngFor="let navGroup of sideNav; let idx = index"
+                 class="theme-dark">
       <ng-container *ngFor="let link of navGroup.panels">
-         <app-side-bar-link [title]="link.title"
+         <app-side-bar-link [(activeMainPanel)]="activeMainPanel"
+                            [title]="link.title"
                             [icon]="link.icon"
                             [iconStyle]="link.iconStyle"
                             [route]="link.route"
@@ -11,13 +13,7 @@
                             [subPanels]="link.subPanels">
          </app-side-bar-link>
       </ng-container>
+      <mat-divider *ngIf="idx < (sideNav.length - 1)"></mat-divider>
    </mat-nav-list>
-   <div class="bottom"></div>
+
 </div>
-<!-- <mat-nav-list class="bottom">
-   <app-side-bar-link [separator]="true"></app-side-bar-link>
-      <app-side-bar-link [title]="'Log Out'"
-                      [icon]="'power_settings_new'"
-                      (click)="logOut()">
-   </app-side-bar-link>
-</mat-nav-list> -->

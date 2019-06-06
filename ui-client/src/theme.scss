@@ -1,3 +1,11 @@
 @import 'styles/themes';
 @include mat-core();
-@include angular-material-theme($default_theme);
+@include angular-material-theme($material_theme);
+
+.theme-dark {
+   @include angular-material-theme($dark_theme);
+}
+
+.theme-default {
+   @include angular-material-theme($material_theme);
+}

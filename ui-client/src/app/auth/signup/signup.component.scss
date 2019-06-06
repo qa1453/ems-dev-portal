@@ -1,5 +1,13 @@
 /* all styles moves to styles.scss */
-@import "src/styles.scss";
+// @import "src/styles.scss";
+@import "src/styles/themes";
+
+// Theming variables
+$theme     : $dark_theme;
+$primary   : map-get($theme, primary);
+$accent    : map-get($theme, accent);
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
 
 .signup-container-background {
    position        : fixed;
@@ -9,7 +17,7 @@
    width           : 100%;
    height          : 100%;
    background-image: url('../../../assets/dark-city.jpg');
-   background-color: black;
+   background-color: mat-color($accent);
    filter          : blur(5px);
 }
 
@@ -25,8 +33,8 @@
 }
 
 mat-card {
-   width           : 650px;
-   background-color: #E8E8E8; // #fff;
+   width           : 750px;
+   background-color: #fff; //#E8E8E8; //
 }
 
 .mat-card-title {
@@ -43,13 +51,8 @@ mat-card-content {
    width: 65%;
 }
 
-.expandable {
-   mat-form-field {
-      width: auto !important;
-   }
-
-   .mat-select-value {
-      max-width: 100%;
-      width    : auto;
-   }
+// TODO -- need a lighter shade of netsfere red when the button is disabled. 
+button[mat-raised-button][disabled] {
+   background-color: mat_color($accent, 300);
+   color           : mat_color($primary, card);
 }

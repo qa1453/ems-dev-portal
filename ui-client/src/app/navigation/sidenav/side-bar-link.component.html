@@ -1,13 +1,31 @@
-<hr *ngIf="separator; else navLink">
+<mat-divider *ngIf="separator; else navLink"></mat-divider>
 <ng-template #navLink>
    <a mat-list-item
-      class="mat-list-item"
+      disableRipple
+      class="theme-dark"
       routerLink="{{route}}"
       [routerLinkActive]="route ? ['active'] : ['']"
+      (click)="handleLinkClick()"
       [ngClass]="{'mainPanel': !isSubpanel,
-      'subPanel': isSubpanel}">
-      <!-- <mat-icon class="{{iconStyle}}">{{icon}}</mat-icon> -->
-      <mat-icon>{{icon}}</mat-icon>
+                   'subPanel': isSubpanel,
+                   'expanded': expanded}">
+      <mat-icon class="{{iconStyle}}">{{icon}}</mat-icon>
       <div class="linkText">{{title}}</div>
+      <mat-icon class="material-icons expandIcon"
+                *ngIf="!isSubpanel && subPanels">
+         {{expanded ? "keyboard_arrow_down" : "keyboard_arrow_right"}}
+      </mat-icon>
    </a>
+   <div *ngIf="expanded && !isSubpanel && subPanels">
+      <ng-container *ngFor="let link of subPanels">
+         <app-side-bar-link [title]="link.title"
+                            [icon]="link.icon"
+                            [iconStyle]="link.iconStyle"
+                            [route]="link.route"
+                            [separator]="link.separator"
+                            [isSubpanel]="link.isSubpanel"
+                            [subPanels]="link.subPanels">
+         </app-side-bar-link>
+      </ng-container>
+   </div>
 </ng-template>
