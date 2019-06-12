@@ -6,6 +6,6 @@ export interface SignupInterface {
    password2: string;
    company: string;
    country: string;
-   phone_country_code: string;
-   phone_number: string;
+   calling_code: string;
+   phone: string;
 }

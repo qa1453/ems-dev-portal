@@ -1,0 +1,112 @@
+<div [ngSwitch]="(userAuthInfo$ | async)?.state">
+
+   <mat-toolbar *ngSwitchCase="AuthStates.loggedOut"
+                class="mat-toolbar"
+                fxLayout="row"
+                fxLayoutAlign="space-evenly center">
+      <div fxFlex="25">
+         <app-logo></app-logo>
+      </div>
+
+      <div fxFlex="50"
+           fxHide.lt-md>
+         <ul fxLayout="row"
+             fxLayoutAlign="center center">
+            <li fxFlexAlign="center"
+                *ngFor="let link of topNavLoggedOut">
+               <a mat-button
+                  [attr.href]="link.href ? link.href : null"
+                  [matMenuTriggerFor]="linkMenu">{{ link.title | uppercase }}
+                  <mat-icon *ngIf="link.subLinks">arrow_drop_down</mat-icon>
+               </a>
+               <mat-menu #linkMenu>
+                  <ng-container *ngFor="let subLink of link.subLinks">
+                     <mat-divider *ngIf="subLink.separator; else navLink">
+                     </mat-divider>
+                     <ng-template #navLink>
+                        <a mat-menu-item
+                           [attr.href]="subLink.href ? subLink.href : null">
+                           {{subLink.title}}
+                        </a>
+                     </ng-template>
+                  </ng-container>
+               </mat-menu>
+            </li>
+         </ul>
+      </div>
+
+      <div fxFlex="25">
+         <ul fxLayout="row"
+             fxLayoutAlign="center center">
+            <li class="login-link">
+               <a mat-button
+                  routerLink="/login">LOGIN
+               </a>
+            </li>
+            <li class="signup-link"
+                fxLayout="row"
+                fxLayoutAlign="center center">
+               <button mat-raised-button
+                       class="signup-button"
+                       routerLink="/signup">TRY IT NOW
+               </button>
+            </li>
+         </ul>
+      </div>
+   </mat-toolbar>
+
+   <mat-toolbar *ngSwitchCase="AuthStates.emailConfirmPending"
+                class="mat-toolbar"
+                fxLayout="row"
+                fxLayoutAlign="space-between stretch">
+   </mat-toolbar>
+
+   <mat-toolbar *ngSwitchCase="AuthStates.loggedIn"
+                class="mat-toolbar"
+                fxLayout="row"
+                fxLayoutAlign="space-between stretch">
+
+      <!-- this div is left justified -->
+      <div fxLayout="row"
+           fxLayoutAlign="space-between center">
+
+         <button type="button"
+                 aria-label="Toggle sidenav"
+                 mat-icon-button
+                 (click)="toggleSidebarCollapse()">
+            <mat-icon aria-label="Side Nav Toggle ICON">menu</mat-icon>
+         </button>
+
+         <div fxFlex="none">
+            <app-logo></app-logo>
+         </div>
+      </div>
+
+      <!-- this div is right justified in outer container -->
+      <!-- the contents of this div are -->
+      <div fxLayout="row"
+           fxLayoutAlign="space-around center"
+           fxLayOutGap="20px">
+         <div>
+            <span class="userNameSpan">{{ getFullName() }}
+            </span>
+         </div>
+         <div>
+            <button type="butto) }} n"
+                    aria-label="Logout"
+                    mat-icon-button
+                    (click)="authService.logout()">
+               <mat-icon aria-label="Logout">
+                  power_settings_new
+               </mat-icon>
+            </button>
+         </div>
+         <div>
+            <mat-icon aria-label="Notification">
+               announcement
+            </mat-icon>
+         </div>
+      </div>
+   </mat-toolbar>
+
+</div>

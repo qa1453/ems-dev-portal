@@ -45,9 +45,9 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
    ngOnInit() {
       //  recaptcha: new FormControl(null, Validators.required)
       this.myFormGroup = new FormGroup({
-         firstName: new FormControl(null,
+         firstname: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)] }),
-         lastName: new FormControl(null,
+         lastname: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)] }),
          email: new FormControl(null,
             { validators: [Validators.required, Validators.email] }),

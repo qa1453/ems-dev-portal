@@ -7,9 +7,9 @@ import { NgMaterialModule } from 'src/app/shared/ng-material-module.module';
 
 import { SideBarLinkComponent } from './sidenav/side-bar-link.component';
 import { SideBarComponent } from './sidenav/sidebar.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
+import { TopnavComponent } from './topnav/topnav.component';
 
 const routes: Routes = [];
 
@@ -17,9 +17,9 @@ const routes: Routes = [];
    declarations: [
       SideBarLinkComponent,
       SideBarComponent,
-      HeaderComponent,
       FooterComponent,
-      LogoComponent
+      LogoComponent,
+      TopnavComponent
    ],
    imports: [
       CommonModule,
@@ -32,8 +32,8 @@ const routes: Routes = [];
       RouterModule,
       SideBarLinkComponent,
       SideBarComponent,
-      HeaderComponent,
-      FooterComponent
+      FooterComponent,
+      TopnavComponent
    ]
 })
 export class NavigationModule { }

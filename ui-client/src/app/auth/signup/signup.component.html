@@ -28,10 +28,18 @@
                fxLayout="column"
                fxLayoutAlign="space-between stretch"
                fxLayoutGap="12px"
-               (ngSubmit)="formSubmit()">
+               (ngSubmit)="formSubmit()"
+               autocomplete="off">
             <section fxLayout="row"
                      fxLayoutAlign="space-between center"
                      fxLayoutGap="8px">
+               <!-- these next two input lines are used to fake out Chrome to disable auto complete for the real fields -->
+               <input style="display:none;"
+                      type="text"
+                      name="somefakename" />
+               <input style="display:none;"
+                      type="password"
+                      name="anotherfakename" />
 
                <mat-form-field appearance="{{ formFieldAppearance }}"
                                fxFlex="50">
@@ -39,7 +47,8 @@
                   <input type="text"
                          matInput
                          placeholder="first name"
-                         formControlName="firstName">
+                         formControlName="firstname"
+                         autocomplete="fubar">
                   <mat-error>Error in first name (6 to 30 characters)
                   </mat-error>
                </mat-form-field>
@@ -50,7 +59,8 @@
                   <input type="text"
                          matInput
                          placeholder="last name"
-                         formControlName="lastName">
+                         formControlName="lastname"
+                         autocomplete="fubar">
                   <mat-error>Error in last name (6 to 30 characters)</mat-error>
                </mat-form-field>
             </section>
@@ -64,7 +74,8 @@
                   <input type="email"
                          matInput
                          placeholder="email"
-                         formControlName="email">
+                         formControlName="email"
+                         autocomplete="fubar">
                   <mat-error>Invalid/missing email</mat-error>
                </mat-form-field>
             </section>
@@ -79,7 +90,8 @@
                                {{ passwordFieldType }}"
                          matInput
                          placeholder="password"
-                         formControlName="password">
+                         formControlName="password"
+                         autocomplete="fubar">
                   <button type="button"
                           matSuffix
                           mat-icon-button
@@ -96,7 +108,8 @@
                   <input type="{{ password2FieldType }}"
                          matInput
                          placeholder="password (confirmed)"
-                         formControlName="password2">
+                         formControlName="password2"
+                         autocomplete="fubar">
                   <button type="button"
                           matSuffix
                           mat-icon-button
@@ -121,8 +134,8 @@
                             placeholder="country"
                             [matAutocomplete]="auto"
                             formControlName="country"
-                            autocomplete="off"
-                            required>
+                            required
+                            autocomplete="fubar">
                      <mat-autocomplete #auto="matAutocomplete">
                         <mat-option *ngFor="let country of filteredCountries | async"
                                     [value]="country.country">
@@ -140,7 +153,8 @@
                   <mat-label>cc*</mat-label>
                   <input matInput
                          value=""
-                         formControlName="calling_code">
+                         formControlName="calling_code"
+                         autocomplete="fubar">
                </mat-form-field>
                <mat-form-field fxFlex="42"
                                appearance="{{ formFieldAppearance }}">
@@ -148,7 +162,8 @@
                   <input matInput
                          placeholder="phone"
                          value=""
-                         formControlName="phone">
+                         formControlName="phone"
+                         autocomplete="fubar">
                </mat-form-field>
             </div>
 
@@ -157,7 +172,8 @@
                <input type="text"
                       matInput
                       placeholder="company"
-                      formControlName="company">
+                      formControlName="company"
+                      autocomplete="fubar">
             </mat-form-field>
 
             <!-- formControlName="recaptcha" -->

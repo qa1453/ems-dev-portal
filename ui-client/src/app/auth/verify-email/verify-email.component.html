@@ -1,0 +1,83 @@
+<section class="outer-container"
+         fxLayout="column"
+         fxLayoutAlign="start center">
+
+
+   <mat-card class="my-card"
+             fxLayout="column"
+             fxLayoutAlign="space-between start">
+
+      <div class="header"
+           fxLayout="row"
+           fxLayoutAlign="start start"
+           fxLayoutGap="20px">
+
+         <div fxFlex="75">
+            <div class="callToAction">Verify your email to start your free trial
+            </div>
+            <div class="callToActionStep">Verify Email</div>
+         </div>
+         <mat-icon>mail_outline</mat-icon>
+      </div>
+
+      <div fxLayout="column"
+           fxLayoutAlign="start stretch"
+           fxLayoutGap="20px">
+
+         <div>
+            We sent an email to:
+            <span style="font-family: Lucida Console; font-weight: bold">
+               {{userAuthInfo.email}}
+            </span>
+         </div>
+         <div>
+            To continue, please click on the activation link in the email, <br>
+            or enter the activation code from the email below:
+         </div>
+
+
+         <form [formGroup]="verifyFormGroup"
+               fxLayout="column"
+               fxLayoutAlign="space-between start"
+               fxLayoutGap="12px"
+               (ngSubmit)="verifyEmailSubmit()"
+               autocomplete="off">
+
+            <!-- these next two input lines are used to fake out Chrome to disable auto complete for the real fields -->
+            <input style="display:none;"
+                   type="text"
+                   name="somefakename" />
+            <input style="display:none;"
+                   type="password"
+                   name="anotherfakename" />
+            <section style="width: 100%">
+               <mat-form-field style="width: 75%">
+                  <mat-label>activation code</mat-label>
+                  <input type="text"
+                         matInput
+                         formControlName="activationcode"
+                         autocomplete="fubar">
+                  <mat-error>Please enter your activation code</mat-error>
+               </mat-form-field>
+            </section>
+
+            <button type="submit"
+                    mat-raised-button
+                    color="accent"
+                    [disabled]="verifyFormGroup.invalid">VERIFY
+            </button>
+         </form>
+
+
+         <div fxLayout="column"
+              fxLayoutAlign="start start">
+            <p>Didn't receive the activation email?</p>
+
+            <a class="resend-email-tag"
+               (click)="resendEmailSubmit()">Resend Email</a>
+         </div>
+
+
+      </div>
+   </mat-card>
+</section>

@@ -10,4 +10,7 @@ export interface UserAuthInfo {
    email: string;
    firstname: string;
    lastname: string;
+   callingcode?: string;
+   phone?: string;
+   activationcode?: string;
 }

@@ -35,7 +35,13 @@ export class AuthService {
       return this.curUserSub.asObservable();
    }
 
-   signup(user: SignupInterface): boolean {
+   getUserInfoObs() {
+      return this.curUserSub.asObservable();
+   }
+
+
+   signup = (user: SignupInterface): boolean => {
+      // signup(user: SignupInterface): boolean {
       let retVal = false;
 
       if (user.email !== '' && user.password !== '') {
@@ -43,7 +49,10 @@ export class AuthService {
             state: AuthStates.emailConfirmPending,
             email: user.email,
             firstname: user.firstname,
-            lastname: user.lastname
+            lastname: user.lastname,
+            callingcode: user.calling_code,
+            phone: user.phone,
+            activationcode: Math.random().toString(36).substring(2, 15) // temporary, I believe.
          };
          this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
          this.curUserSub.next(this.curUser);
@@ -56,6 +65,8 @@ export class AuthService {
    login(user: LoginInterface) {
       this.curUser.state = AuthStates.loggedIn;
       this.curUser.email = user.email;
+      this.curUser.firstname = "Test";
+      this.curUser.lastname = "User";
       this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
       this.curUserSub.next(this.curUser);
       return true;
@@ -63,6 +74,10 @@ export class AuthService {
 
    getUserEmail(): string {
       return this.curUser.email;
+   }
+
+   getFullName(): string {
+      return this.curUser.firstname + " " + this.curUser.lastname;
    }
 
    logout() {

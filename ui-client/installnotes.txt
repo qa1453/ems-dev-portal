@@ -1,0 +1,13 @@
+To install nginx:
+
+https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+
+$releaseserver=7
+$basearch=x86_64
+

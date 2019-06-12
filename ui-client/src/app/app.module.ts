@@ -24,6 +24,9 @@ import { CompanyModule } from './app-features/company/company.module';
 import { HelpModule } from './app-features/help/help.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { SideBarMenu } from './navigation/sidenav/sidebar.model';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { NotfoundComponent } from './core/notfound/notfound.component';
+import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { SideBarMenu } from './navigation/sidenav/sidebar.model';
       HomeComponent,
       LoginComponent,
       ForgotPasswordComponent,
-      SplashComponent
+      SplashComponent,
+      VerifyEmailComponent,
+      NotfoundComponent,
+      VerifySmsComponent
    ],
    imports: [
       CommonModule,

@@ -1,0 +1,21 @@
+@import "src/styles/themes";
+
+// Theming variables
+$theme     : $dark_theme;
+$primary   : map-get($theme, primary);
+$accent    : map-get($theme, accent);
+$foreground: map-get($theme, foreground);
+
+section div:nth-child(1),
+section div:nth-child(3) {
+   color    : mat-color($foreground);
+   font-size: 40px;
+}
+
+section div:nth-child(1) {
+   margin-top: 20px;
+}
+
+section div:nth-child(2) {
+   width: 50%;
+}

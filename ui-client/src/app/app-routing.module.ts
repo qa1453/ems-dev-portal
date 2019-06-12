@@ -7,11 +7,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { AuthGuard } from './auth/auth.guard';
 import { SplashComponent } from './core/splash/splash.component';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { NotfoundComponent } from './core/notfound/notfound.component';
+import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
 
 const routes: Routes = [
    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+   { path: '404', component: NotfoundComponent },
    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
    { path: 'signup', component: SignupComponent },
+   { path: 'verifyemail', component: VerifyEmailComponent },
+   { path: 'verifysms', component: VerifySmsComponent },
    { path: 'login', component: LoginComponent },
    { path: 'forgot', component: ForgotPasswordComponent },
    { path: 'analytics', canActivate: [AuthGuard], loadChildren: './app-features/analytics/analytics.module#AnalyticsModule' },
@@ -23,7 +29,7 @@ const routes: Routes = [
    { path: 'help', loadChildren: './app-features/help/help.module#HelpModule' },
 
    { path: '', component: SplashComponent },
-   { path: '**', component: SplashComponent }
+   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
 @NgModule({
