@@ -1,3 +1,4 @@
+<!-- to avoid multiple implicit subscriptions, do it once and then "switch" on the state value -->
 <div [ngSwitch]="(userAuthInfo$ | async)?.state">
 
    <mat-toolbar *ngSwitchCase="AuthStates.loggedOut"
@@ -43,7 +44,14 @@
                   routerLink="/login">LOGIN
                </a>
             </li>
-            <li class="signup-link"
+            <li class="login-link">
+               <a mat-button
+                  href="javascript: void(0)">
+                  <span (click)="doLogin()">LOGIN-POPUP</span>
+               </a>
+            </li>
+            <li class="
+                     signup-link"
                 fxLayout="row"
                 fxLayoutAlign="center center">
                <button mat-raised-button

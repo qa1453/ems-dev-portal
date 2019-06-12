@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+
+@mixin form-field-adjustment($theme) {
+   $primary   : map-get($theme, primary);
+   $accent    : map-get($theme, accent);
+   $warn      : map-get($theme, warn);
+   $foreground: map-get($theme, foreground);
+
+   .mat-form-field {
+      &.mat-focused {
+         .mat-form-field-label {
+            color: mat-color($foreground, secondary-text) !important;
+         }
+
+         .mat-form-field-ripple {
+            background-color: mat-color($foreground, secondary-text) !important;
+         }
+
+         &.mat-form-field-invalid {
+            .mat-form-field-label {
+               color: mat-color($warn) !important;
+            }
+
+            .mat-form-field-ripple {
+               background-color: mat-color($warn) !important;
+            }
+         }
+      }
+   }
+}

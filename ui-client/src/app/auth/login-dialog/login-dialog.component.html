@@ -1,0 +1,77 @@
+<section class="dialog-container"
+         fxLayout="column"
+         fxLayoutAlign="center center">
+
+   <h1 mat-dialog-title>Login</h1>
+
+   <mat-dialog-content [formGroup]="loginForm">
+
+      <section fxLayout="row"
+               fxLayoutAlign="center center"
+               *ngIf="loginFailed">
+         <mat-error>Invalid email and/or password combination.
+         </mat-error>
+      </section>
+
+
+      <section fxLayout="column"
+               fxLayoutAlign="center center">
+
+         <!-- these next two input lines are used to fake out Chrome 
+         to disable auto complete for the real fields -->
+         <input style="display:none;"
+                type="text"
+                name="somefakename" />
+         <input style="display:none;"
+                type="password"
+                name="anotherfakename" />
+
+         <!-- email, password -->
+         <mat-form-field appearance="legacy">
+            <input type="email"
+                   matInput
+                   placeholder="email"
+                   formControlName="email"
+                   autocomplete="chromeworkaround">
+            <button matSuffix
+                    mat-icon-button>
+               <mat-icon matSuffix>email</mat-icon>
+            </button>
+            <!-- <mat-hint>Please enter a valid email</mat-hint> -->
+            <mat-error>Invalid/missing email</mat-error>
+         </mat-form-field>
+
+         <mat-form-field appearance="legacy">
+            <input type="{{ passwordFieldType }}"
+                   matInput
+                   placeholder="password"
+                   formControlName="password"
+                   autocomplete="chromeworkaround">
+            <button matSuffix
+                    mat-icon-button
+                    (click)="togglePasswordVisibility()">
+               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+            </button>
+            <!-- <mat-hint>Please enter your password</mat-hint> -->
+            <mat-error>Missing password!</mat-error>
+         </mat-form-field>
+      </section>
+   </mat-dialog-content>
+
+   <mat-dialog-actions>
+      <button mat-raised-button
+              (click)="onCancel()"
+              color="primary">CANCEL</button>
+      <button type="submit"
+              mat-raised-button
+              (click)="onLogin()"
+              color="accent"
+              [disabled]=loginForm.invalid>LOGIN</button>
+   </mat-dialog-actions>
+   <mat-dialog-actions>
+      <a mat-button
+         href="javascript: void(0)">
+         <span (click)="onForgotPassword()">FORGOT PASSWORD</span>
+      </a>
+   </mat-dialog-actions>
+</section>

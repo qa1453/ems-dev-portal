@@ -27,6 +27,8 @@ import { SideBarMenu } from './navigation/sidenav/sidebar.model';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
+import { LoginDialogComponent } from './auth/login-dialog/login-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
       SplashComponent,
       VerifyEmailComponent,
       NotfoundComponent,
-      VerifySmsComponent
+      VerifySmsComponent,
+      LoginDialogComponent
    ],
    imports: [
       CommonModule,
@@ -60,7 +63,15 @@ import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
       CompanyModule,
       HelpModule
    ],
-   providers: [AuthService, SideBarMenu],
+
+   entryComponents: [
+      LoginDialogComponent
+   ],
+   providers: [
+      AuthService,
+      SideBarMenu,
+      { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+   ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

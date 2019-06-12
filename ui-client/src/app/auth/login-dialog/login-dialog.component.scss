@@ -1,0 +1,31 @@
+@import "src/styles/themes";
+
+// Theming variables
+$theme     : $dark_theme;
+$primary   : map-get($theme, primary);
+$accent    : map-get($theme, accent);
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
+
+.dialog-container {
+   width: 450px;
+}
+
+[mat-dialog-title] {
+   font-weight: bold;
+   font-size  : 24px;
+}
+
+mat-dialog-content {
+   width: 90%;
+}
+
+mat-form-field {
+   width   : 100%;
+   overflow: hidden;
+}
+
+button[mat-raised-button][disabled] {
+   background-color: mat_color($accent, 300);
+   color           : white;
+}

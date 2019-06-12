@@ -1,6 +1,8 @@
 @import 'styles/themes';
+@import 'styles/mixins';
 @include mat-core();
 @include angular-material-theme($material_theme);
+@include form-field-adjustment($material_theme);
 
 .theme-dark {
    @include angular-material-theme($dark_theme);

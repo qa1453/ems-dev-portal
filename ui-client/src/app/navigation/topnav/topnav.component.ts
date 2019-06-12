@@ -3,6 +3,8 @@ import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
 import { Observable } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { LoginDialogComponent } from 'src/app/auth/login-dialog/login-dialog.component';
 
 @Component({
    selector: 'app-topnav',
@@ -57,7 +59,7 @@ export class TopnavComponent implements OnInit {
          href: "help"
       }
    ];
-   constructor(private authService: AuthService) { }
+   constructor(private authService: AuthService, public dialog: MatDialog) { }
 
    ngOnInit() {
       this.userAuthInfo$ = this.authService.userInfo;
@@ -76,5 +78,15 @@ export class TopnavComponent implements OnInit {
 
    getFullName() {
       return this.authService.getFullName();
+   }
+
+   doLogin() {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      const dialogRef = this.dialog.open(LoginDialogComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+         console.log("Login Dialog Closed: " + result);
+      });
    }
 }
