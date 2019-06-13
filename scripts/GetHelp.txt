@@ -3,3 +3,6 @@ git config --global --add https.proxy http://proxy.mp.ics.com:1080/
 
 git config --global --unset http.proxy
 git config --global --unset https.proxy
+
+To add a table to sql database:
+sql>source /<directory PATH to file>/filename.sql
