@@ -5,6 +5,7 @@ import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginDialogComponent } from 'src/app/auth/login-dialog/login-dialog.component';
+import { SignupComponent } from 'src/app/auth/signup/signup.component';
 
 @Component({
    selector: 'app-topnav',
@@ -81,12 +82,22 @@ export class TopnavComponent implements OnInit {
    }
 
    doLogin() {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      const dialogRef = this.dialog.open(LoginDialogComponent, dialogConfig);
+      const config = new MatDialogConfig();
+      config.disableClose = true;
+      config.autoFocus = true;
+      const dialogRef = this.dialog.open(LoginDialogComponent, config);
       dialogRef.afterClosed().subscribe(result => {
          console.log("Login Dialog Closed: " + result);
+      });
+   }
+
+   doSignup() {
+      const config = new MatDialogConfig();
+      config.disableClose = true;
+      config.autoFocus = true;
+      const dialogRef = this.dialog.open(SignupComponent, config);
+      dialogRef.afterClosed().subscribe(result => {
+         console.log("Signup Dialog Closed: " + result);
       });
    }
 }

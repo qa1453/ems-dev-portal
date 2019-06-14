@@ -1,4 +1,4 @@
-<section class="dialog-container"
+<section class="outer-container"
          fxLayout="column"
          fxLayoutAlign="center center">
 
@@ -50,7 +50,9 @@
             <button matSuffix
                     mat-icon-button
                     (click)="togglePasswordVisibility()">
-               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+               <mat-icon>
+                  {{ passwordFieldType === 'password' ? 'visibility_off' : 'visibility_on' }}
+               </mat-icon>
             </button>
             <!-- <mat-hint>Please enter your password</mat-hint> -->
             <mat-error>Missing password!</mat-error>

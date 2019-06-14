@@ -7,7 +7,7 @@ $accent    : map-get($theme, accent);
 $background: map-get($theme, background);
 $foreground: map-get($theme, foreground);
 
-.dialog-container {
+.outer-container {
    width: 450px;
 }
 

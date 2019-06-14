@@ -9,7 +9,6 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HomeComponent } from './core/home/home.component';
-import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { NavigationModule } from './navigation/navigation.module';
@@ -36,7 +35,6 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
       AppComponent,
       SignupComponent,
       HomeComponent,
-      LoginComponent,
       ForgotPasswordComponent,
       SplashComponent,
       VerifyEmailComponent,

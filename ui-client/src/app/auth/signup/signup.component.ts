@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, Optional, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material';
 import { Subject, Observable } from 'rxjs';
@@ -37,6 +38,8 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
    @ViewChild('singleSelect') singleSelect: MatSelect;
 
    constructor(
+      public dialogRef: MatDialogRef<SignupComponent>,
+      @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
       private authService: AuthService,
       private router: Router,
       private countryCodeService: CountryCodesService) {
@@ -118,26 +121,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
 
-
-   // onChanges(): void {
-   //    // when the country code is selected, update the calling code for the selected country
-   //    // Need to first find the long country name given the abbreivation.
-   //    // Then, using the long country name, I can find the calling code.
-   //    this.myFormGroup.get('country').valueChanges.subscribe(val => {
-   //       let newValue = this.myFormGroup.get('country').value;
-   //       console.log("New Country Value: " + newValue);
-   //       // the next line causes an infinite loop of change detection
-   //       //this.myFormGroup.get('country').setValue(newValue);
-   //       let callingCodeObj = this.callingCodes.filter((obj) => { return obj.country == val });
-   //       if (callingCodeObj.length <= 0) {
-   //          console.warn("No matching calling code found for: [" + val + "]");
-   //       } else {
-   //          this.myFormGroup.get('calling_code').setValue(callingCodeObj[0].calling_code);
-   //       }
-   //    });
-   // }
-
-
    resolved(captchaResponse: string) {
       console.log(`Resolved captcha with response ${captchaResponse}:`);
    }
@@ -152,6 +135,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       const value = control.value || '';
       console.log("Validating password! " + value);
       return null;
+   }
+
+   onCancel(): void {
+      this.dialogRef.close();
    }
 
    formSubmit() {

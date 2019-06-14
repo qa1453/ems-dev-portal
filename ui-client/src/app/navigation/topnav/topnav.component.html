@@ -41,13 +41,8 @@
              fxLayoutAlign="center center">
             <li class="login-link">
                <a mat-button
-                  routerLink="/login">LOGIN
-               </a>
-            </li>
-            <li class="login-link">
-               <a mat-button
                   href="javascript: void(0)">
-                  <span (click)="doLogin()">LOGIN-POPUP</span>
+                  <span (click)="doLogin()">LOGIN</span>
                </a>
             </li>
             <li class="
@@ -56,7 +51,7 @@
                 fxLayoutAlign="center center">
                <button mat-raised-button
                        class="signup-button"
-                       routerLink="/signup">TRY IT NOW
+                       (click)="doSignup()">TRY IT NOW
                </button>
             </li>
          </ul>

@@ -32,6 +32,10 @@ export class LoginDialogComponent implements OnInit {
       });
    }
 
+   togglePasswordVisibility() {
+      this.passwordFieldType = (this.passwordFieldType === "password") ? "text" : "password";
+   }
+
    onCancel(): void {
       this.dialogRef.close();
    }
@@ -52,14 +56,6 @@ export class LoginDialogComponent implements OnInit {
       this.dialogRef.close();
    }
 
-   togglePasswordVisibility() {
-      if (this.passwordFieldType == "password") {
-         this.passwordFieldType = "text";
-         this.passwordFieldIcon = "visibility_on"
-      } else {
-         this.passwordFieldType = "password";
-         this.passwordFieldIcon = "visibility_off";
-      }
-   }
+
 
 }
