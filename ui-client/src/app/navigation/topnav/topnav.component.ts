@@ -4,8 +4,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { LoginDialogComponent } from 'src/app/auth/login-dialog/login-dialog.component';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignupComponent } from 'src/app/auth/signup/signup.component';
+import { LoginResult } from 'src/app/auth/login-interface';
+import { ForgotPasswordComponent } from '../../auth/forgot-password/forgot-password.component';
 
 @Component({
    selector: 'app-topnav',
@@ -85,9 +87,19 @@ export class TopnavComponent implements OnInit {
       const config = new MatDialogConfig();
       config.disableClose = true;
       config.autoFocus = true;
-      const dialogRef = this.dialog.open(LoginDialogComponent, config);
-      dialogRef.afterClosed().subscribe(result => {
-         console.log("Login Dialog Closed: " + result);
+      const dialogRef = this.dialog.open(LoginComponent, config);
+      dialogRef.afterClosed().subscribe((result: LoginResult) => {
+         switch (result) {
+            case LoginResult.Success: {
+               // do nothing
+               break;
+            }
+
+            case LoginResult.ForgotPassword: {
+               this.doForgotPassword();
+            }
+         }
+
       });
    }
 
@@ -98,6 +110,16 @@ export class TopnavComponent implements OnInit {
       const dialogRef = this.dialog.open(SignupComponent, config);
       dialogRef.afterClosed().subscribe(result => {
          console.log("Signup Dialog Closed: " + result);
+      });
+   }
+
+   doForgotPassword() {
+      const config = new MatDialogConfig();
+      config.disableClose = true;
+      config.autoFocus = true;
+      const dialogRef = this.dialog.open(ForgotPasswordComponent, config);
+      dialogRef.afterClosed().subscribe(result => {
+         console.log("ForgotPassword Dialog Closed: " + result);
       });
    }
 }

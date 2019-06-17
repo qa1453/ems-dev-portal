@@ -90,25 +90,46 @@
       <div fxLayout="row"
            fxLayoutAlign="space-around center"
            fxLayOutGap="20px">
-         <div>
-            <span class="userNameSpan">{{ getFullName() }}
-            </span>
-         </div>
-         <div>
-            <button type="butto) }} n"
-                    aria-label="Logout"
-                    mat-icon-button
-                    (click)="authService.logout()">
-               <mat-icon aria-label="Logout">
-                  power_settings_new
+
+         <button mat-button
+                 [matMenuTriggerFor]="profile_dropdown">
+            <span>{{ getFullName() | uppercase }}</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+         </button>
+
+         <mat-menu #profile_dropdown>
+            <button mat-menu-item>
+               <mat-icon color="accent"
+                         class="material-icons">
+                  settings
                </mat-icon>
+               <span class="dropdown_text">Settings</span>
             </button>
-         </div>
-         <div>
-            <mat-icon aria-label="Notification">
-               announcement
-            </mat-icon>
-         </div>
+            <button mat-menu-item
+                    (click)="authService.logout()">
+               <mat-icon color="accent"
+                         class="material-icons">
+                  exit_to_app
+               </mat-icon>
+               <span class="dropdown_text">Log Out</span>
+            </button>
+         </mat-menu>
+
+         <button mat-icon-button
+                 matBadge="1"
+                 matBadgeColor="accent"
+                 matBadgeSize="small"
+                 [matBadgeHidden]="false"
+                 [matMenuTriggerFor]="notifMenu"
+                 id="notifButton">
+            <img src="assets/icons/notification_header_icon.png" />
+            <mat-menu #notifMenu="matMenu">
+               <!--      <button mat-menu-item
+                       *ngFor="let n of notifications">
+                  <span>{{n.title}}: </span>{{n.message}}
+               </button> -->
+            </mat-menu>
+         </button>
       </div>
    </mat-toolbar>
 

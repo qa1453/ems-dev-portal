@@ -26,7 +26,7 @@ import { SideBarMenu } from './navigation/sidenav/sidebar.model';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 import { VerifySmsComponent } from './auth/verify-sms/verify-sms.component';
-import { LoginDialogComponent } from './auth/login-dialog/login-dialog.component';
+import { LoginComponent } from './auth/login/login.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 
@@ -40,7 +40,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
       VerifyEmailComponent,
       NotfoundComponent,
       VerifySmsComponent,
-      LoginDialogComponent
+      LoginComponent
    ],
    imports: [
       CommonModule,
@@ -63,7 +63,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
    ],
 
    entryComponents: [
-      LoginDialogComponent
+      LoginComponent,
+      SignupComponent
    ],
    providers: [
       AuthService,

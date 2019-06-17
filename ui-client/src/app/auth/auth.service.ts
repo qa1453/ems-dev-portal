@@ -72,6 +72,14 @@ export class AuthService {
       return true;
    }
 
+   handleForgotPasswordRequest = (email: string): boolean => {
+      console.log("Forgot Password request for email: " + email);
+      if (email.startsWith('tom')) {
+         return true;
+      }
+      return false;
+   }
+
    getUserEmail(): string {
       return this.curUser.email;
    }

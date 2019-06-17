@@ -2,20 +2,23 @@
          fxLayout="column"
          fxLayoutAlign="space-evenly center">
 
-   <h1 mat-dialog-title>Sign Up for Free</h1>
+   <h1 mat-dialog-title>SIGN UP FOR FREE</h1>
    <h2 mat-dialog-title>Get an API key and send SMS for free! No credit card
       required.</h2>
 
-   <mat-dialog-content [formGroup]="myFormGroup">
+   <mat-dialog-content [formGroup]="myFormGroup"
+                       autocomplete="off">
 
       <!-- these next two input lines are used to fake out 
          Chrome to disable auto complete for the real fields -->
       <input style="display:none;"
              type="text"
-             name="somefakename" />
+             name="somefakename"
+             autocomplete="off" />
       <input style="display:none;"
              type="password"
-             name="anotherfakename" />
+             name="anotherfakename"
+             autocomplete="off" />
 
       <section fxLayout="row"
                fxLayoutAlign="space-between center"
@@ -120,28 +123,35 @@
                      {{ country.country }}
                   </mat-option>
                </mat-autocomplete>
+               <button matSuffix
+                       mat-icon-button
+                       (click)="clearCountry()">
+                  <mat-icon>clear</mat-icon>
+               </button>
 
             </mat-form-field>
          </div>
-
-         <mat-form-field fxFlex="15"
-                         appearance="{{ formFieldAppearance }}">
-            <mat-label>cc*</mat-label>
-            <input matInput
-                   value=""
-                   formControlName="calling_code"
-                   autocomplete="fubar">
-         </mat-form-field>
-         <mat-form-field fxFlex="42"
-                         appearance="{{ formFieldAppearance }}">
-            <mat-label>Phone number*</mat-label>
-            <input matInput
-                   placeholder="phone"
-                   value=""
-                   formControlName="phone"
-                   autocomplete="fubar">
-         </mat-form-field>
+         <div fxFlex="15">
+            <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-label>cc*</mat-label>
+               <input matInput
+                      value=""
+                      formControlName="calling_code"
+                      autocomplete="fubar">
+            </mat-form-field>
+         </div>
+         <div fxFlex="42">
+            <mat-form-field appearance="{{ formFieldAppearance }}">
+               <mat-label>Phone number*</mat-label>
+               <input matInput
+                      placeholder="phone"
+                      value=""
+                      formControlName="phone"
+                      autocomplete="fubar">
+            </mat-form-field>
+         </div>
       </div>
+
 
       <mat-form-field appearance="{{ formFieldAppearance }}">
          <mat-label>Company (optional)</mat-label>
@@ -151,6 +161,7 @@
                 formControlName="company"
                 autocomplete="fubar">
       </mat-form-field>
+
 
       <!-- formControlName="recaptcha" -->
       <section style="max-width:100%"

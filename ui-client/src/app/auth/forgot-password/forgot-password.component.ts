@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms'
+import { AuthService } from '../auth.service';
 
 @Component({
    selector: 'app-forgot-password',
@@ -8,20 +10,38 @@ import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class ForgotPasswordComponent implements OnInit {
 
-   myFormControl: FormGroup;
+   myForm: FormGroup;
+   forgotPasswordFailed: boolean = false;
 
-   constructor() { }
+   constructor(public dialogRef: MatDialogRef<ForgotPasswordComponent>,
+      @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+      public _snackBar: MatSnackBar,
+      private authService: AuthService) { }
 
    ngOnInit() {
-      this.myFormControl = new FormGroup({
+      this.myForm = new FormGroup({
          email: new FormControl(null,
             { validators: [Validators.required, Validators.email] })
       });
+   }
 
+   onCancel() {
+      this.dialogRef.close();
    }
 
    onSubmit() {
-      console.log(this.myFormControl.value.email, this.myFormControl.value.password);
+      // try to submit this request to the server
+      this.forgotPasswordFailed = this.authService.handleForgotPasswordRequest(this.myForm.value.email);
+      if (this.forgotPasswordFailed) {
+         this._snackBar.open(
+            "Please check your email for instructions!", "X Dismiss", {
+               verticalPosition: 'top'
+            });
+         // duration: 5000 (w/out a duration parameter the snackbar stays up until it's dismissed)
+         this.dialogRef.close();
+      } else {
+         // leave the dialog up with the error;
+      }
    }
 }
 

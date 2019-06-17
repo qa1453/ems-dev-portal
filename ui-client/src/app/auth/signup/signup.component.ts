@@ -102,6 +102,10 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       return this.allCountries.filter(c => c.country.toLowerCase().indexOf(lcVal) != -1);
    }
 
+   public clearCountry() {
+      this.myFormGroup.get('country').setValue('');
+   }
+
 
    myCompare(a, b) {
       let countryA = a.country.toUpperCase();

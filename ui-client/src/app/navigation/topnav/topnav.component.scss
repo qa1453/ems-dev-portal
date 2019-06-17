@@ -1,4 +1,5 @@
 @import "src/styles.scss";
+@import "src/styles/variables";
 
 $theme     : $light_theme;
 $primary   : map-get($theme, primary);
@@ -47,6 +48,23 @@ mat-toolbar {
             }
          }
       }
+
+
+
+      mat-icon {
+         font-size: 22px;
+         display  : inline
+      }
+   }
+
+   .mat-badge-content {
+      font-size     : 7pt;
+      line-height   : 18px;
+      height        : 18px;
+      width         : 18px;
+      vertical-align: middle;
+      top           : 0;
+      left          : 20px;
    }
 
    .login-link {
@@ -59,4 +77,8 @@ mat-toolbar {
       margin          : 0 10px;
 
    }
+}
+
+.dropdown_text {
+   font-weight: bold;
 }
