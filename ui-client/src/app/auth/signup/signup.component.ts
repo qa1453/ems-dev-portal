@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, Optional, Inject } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, Optional, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatSelect } from '@angular/material';
 import { Subject, Observable } from 'rxjs';
 import { startWith, delay, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -21,13 +20,11 @@ import { ICountries, ICallingCodes } from '../countries-interface';
 export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
 
    public myFormGroup: FormGroup;
-   private formSubmitAttempt: boolean;
+   private formSubmitAttempt = false;
 
    formFieldAppearance: string = "legacy"; // legayc|standard|fill|outline
    passwordFieldType: string = "password";
-   passwordFieldIcon: string = "visibility_off";
    password2FieldType: string = "password";
-   password2FieldIcon: string = "visibility_off";
 
    // allCountries is the complete list of allCountries (the initial value)
    // filteredCountries is the list that's filtered based on user input
@@ -35,14 +32,14 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
    public filteredCountries: Observable<ICountries[]>;
    public callingCodes: ICallingCodes[];
 
-   @ViewChild('singleSelect') singleSelect: MatSelect;
 
    constructor(
       public dialogRef: MatDialogRef<SignupComponent>,
       @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
       private authService: AuthService,
       private router: Router,
-      private countryCodeService: CountryCodesService) {
+      private countryCodeService: CountryCodesService
+   ) {
    }
 
    ngOnInit() {
@@ -75,7 +72,6 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
          .subscribe(data => {
             this.callingCodes = data;
          });
-
    }
 
    onChanges(): void {
@@ -129,52 +125,41 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log(`Resolved captcha with response ${captchaResponse}:`);
    }
 
-   // Password Complexity Rules:
-   // must be at least 8 characters long 
-   // must not contain spaces
-   // must contain at least one upper case letter
-   // must contain at least one number
-   // must contain one non-alphanumberic character.
+
    passwordValidator(control: FormControl): { [key: string]: any } {
       const value = control.value || '';
       console.log("Validating password! " + value);
       return null;
+   } false
+
+   onCancel = () => {
+      this.dialogRef.close(true /* false*/);
    }
 
-   onCancel(): void {
-      this.dialogRef.close();
+   onSubmit = () => {
+      this.dialogRef.close(true);
    }
 
-   formSubmit() {
+   // formSubmit() {
 
-      console.log(this.myFormGroup);
+   //    console.log(this.phoneNumFormGroup);
 
-      const result = this.authService.signup(this.myFormGroup.value);
-      if (result) {
-         alert(`SIGNUP Accepted for user ${this.myFormGroup.value.email}`);
-         this.router.navigate(['/home']);
-      } else {
-         alert("Invalid User: " + this.myFormGroup.value.email);
-      }
-   }
+   //    const result = this.authService.signup(this.phoneNumFormGroup.value);
+   //    if (result) {
+   //       alert(`SIGNUP Accepted for user ${this.phoneNumFormGroup.value.email}`);
+   //       this.router.navigate(['/home']);
+   //    } else {
+   //       alert("Invalid User: " + this.phoneNumFormGroup.value.email);
+   //    }
+   // }
 
    togglePasswordVisibility() {
-      if (this.passwordFieldType == "password") {
-         this.passwordFieldType = "text";
-         this.passwordFieldIcon = "visibility_on"
-      } else {
-         this.passwordFieldType = "password";
-         this.passwordFieldIcon = "visibility_off";
-      }
+      this.passwordFieldType = (this.passwordFieldType === "password") ? "text" : "password";
    }
+
    togglePassword2Visibility() {
-      if (this.password2FieldType == "password") {
-         this.password2FieldType = "text";
-         this.password2FieldIcon = "visibility_on"
-      } else {
-         this.password2FieldType = "password";
-         this.password2FieldIcon = "visibility_off";
-      }
+      this.password2FieldType = (this.password2FieldType === "password") ? "text" : "password";
    }
+
 }
 

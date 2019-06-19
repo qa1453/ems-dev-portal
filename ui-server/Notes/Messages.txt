@@ -1,0 +1,62 @@
+SignUp Request
+   Message Parameters in body, in json format.
+      firstname
+      lastname
+      email
+      password1
+      password2
+      country
+      calling_code
+      phone
+      company
+      captcha
+
+   Parameter Validation:
+      Firstname and lastname are not zero-length strings
+      Email address is syntactically valid and <= n characters (n = 130?)
+      passwords are present and are identical.
+      Country is not empty
+      Calling Code is present (starts with a + and ends with one or more digits)
+      Company is optional
+      captcha??
+
+   Logic Checking
+      Note: assume the email adress is a unique index
+      Note: assume the ID is an auto increment field
+      Note: for now, we will just process this locally, and not worry about creating 
+      accompanying records on an EMS anchor server.
+
+      Start/resume session
+
+      Validate the parameters 
+      If this fails, return an HTTP error 400 (bad request)
+      Json:
+         error: 400
+         message: "message that reflects the validation failure"
+         sessionid: session value (need to understand how this is done)   
+      
+
+      Encrypt the pertinant fields (first/last name, phone numbers, email address)
+      Hash the password
+      Assign appropriate initial values for the fields not recevied in the request:
+         user_role?  (make this an enum ('admin' or 'normal'))
+         account_state: email-pending
+         account_type: trial
+         email_verf_code: ''
+         phone_verf_code: ''
+         pwd_forgot_code: ''
+         account_create_date: current date 
+         account_expired_date: for now, hard code this to 30 days
+
+      Attempt to insert the record into the User's table.
+      If (Success) 
+         update the session info with this user's information
+         build return message
+      else (fail)
+         build return message with:
+         error: 500
+         message: error message if you can figure it out
+
+      Send response along with the session id
+
+

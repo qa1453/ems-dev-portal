@@ -69,8 +69,7 @@
          <mat-form-field appearance="{{ formFieldAppearance }}"
                          fxFlex="50">
             <mat-label>Password*</mat-label>
-            <input type="
-                                        {{ passwordFieldType }}"
+            <input type="{{ passwordFieldType }}"
                    matInput
                    placeholder="password"
                    formControlName="password"
@@ -79,7 +78,9 @@
                     matSuffix
                     mat-icon-button
                     (click)="togglePasswordVisibility()">
-               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+               <mat-icon>
+                  {{ passwordFieldType === 'password' ? 'visibility_off' : 'visibility_on' }}
+               </mat-icon>
             </button>
             <mat-error>Invalid/missing password!</mat-error>
          </mat-form-field>
@@ -96,7 +97,9 @@
                     matSuffix
                     mat-icon-button
                     (click)="togglePassword2Visibility()">
-               <mat-icon>{{ passwordFieldIcon }}</mat-icon>
+               <mat-icon>
+                  {{ password2FieldType === 'password' ? 'visibility_off' : 'visibility_on' }}
+               </mat-icon>
             </button>
 
             <mat-error>Invalid/missing password!</mat-error>

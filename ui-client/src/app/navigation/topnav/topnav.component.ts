@@ -8,6 +8,8 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignupComponent } from 'src/app/auth/signup/signup.component';
 import { LoginResult } from 'src/app/auth/login-interface';
 import { ForgotPasswordComponent } from '../../auth/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from '../../auth/verify-email/verify-email.component';
+import { VerifySmsComponent } from 'src/app/auth/verify-sms/verify-sms.component';
 
 @Component({
    selector: 'app-topnav',
@@ -99,17 +101,29 @@ export class TopnavComponent implements OnInit {
                this.doForgotPassword();
             }
          }
-
       });
    }
 
    doSignup() {
-      const config = new MatDialogConfig();
-      config.disableClose = true;
-      config.autoFocus = true;
-      const dialogRef = this.dialog.open(SignupComponent, config);
-      dialogRef.afterClosed().subscribe(result => {
-         console.log("Signup Dialog Closed: " + result);
+      let signupRef = this.dialog.open(SignupComponent);
+      signupRef.afterClosed().subscribe(result => {
+         switch (result) {
+            case true:
+               // display the next dialog box for email verfication.
+               let emailRef = this.dialog.open(VerifyEmailComponent);
+               emailRef.afterClosed().subscribe(result => {
+                  // we shouldn't be here unless success
+                  let smsRef = this.dialog.open(VerifySmsComponent);
+                  smsRef.afterClosed().subscribe(result => {
+                     console.log("returned from VerifySmsComponent");
+                  });
+               })
+               break;
+
+            case false: // do nothing;
+            default:
+               break;
+         }
       });
    }
 

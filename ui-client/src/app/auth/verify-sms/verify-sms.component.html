@@ -1,86 +1,113 @@
 <section class="outer-container"
-         fxLayout="column"
-         fxLayoutAlign="start center">
-
-   <mat-card class="my-card"
-             fxLayout="column"
-             fxLayoutAlign="space-between start">
-
+         fxLayout="row"
+         fxLayoutAlign="space-evenly start">
+   <div class="left-side">
       <div class="header"
            fxLayout="row"
            fxLayoutAlign="start start"
            fxLayoutGap="20px">
-
-         <div fxFlex="75"
-              fxLayout="column"
-              fxLayoutAlign="space-between start">
-            <div class="callToAction">Verify your phone number to start your
-               free trial
-            </div>
-            <br>
-            <div>Your email address <span class="standout-text">
-                  {{userAuthInfo.email}}
-               </span> has been verified!
-            </div>
-         </div>
-         <mat-icon>phonelink_setup</mat-icon>
-      </div>
-
-      <div fxLayout="column"
-           fxLayoutAlign="start stretch"
-           fxLayoutGap="20px">
-         <div class="callToActionStep">Verify Phone Number</div>
          <div>
-            Please enter the verification code sent to phone number:
-            <span class="standout-text">{{userAuthInfo.callingcode}}
-               {{userAuthInfo.phone}} </span>
+            <h1 mat-dialog-title>Verify your phone number to start your
+               free trial</h1>
+            <h2 mat-dialog-title>
+               Please confirm your phone number then press
+               SEND CODE
+            </h2>
          </div>
+      </div>
+      <mat-dialog-content [formGroup]="phoneNumFormGroup"
+                          autocomplete="off">
+         <div fxLayout="row"
+              fxLayoutAlign="none center"
+              fxLayoutGap="12px">
 
-         <form [formGroup]="verifyFormGroup"
-               fxLayout="column"
-               fxLayoutAlign="space-between start"
-               fxLayoutGap="12px"
-               (ngSubmit)="verifySubmit()"
-               autocomplete="off">
-            <!-- these next two input lines are used to fake out Chrome to disable auto complete for the real fields -->
-            <input style="display:none;"
-                   type="text"
-                   name="somefakename" />
-            <input style="display:none;"
-                   type="password"
-                   name="anotherfakename" />
-            <section style="width: 100%">
-               <mat-form-field style="width: 75%">
-                  <mat-label>verification code</mat-label>
+            <div class="expandable"
+                 fxFlex="43">
+               <!-- Country -->
+               <mat-form-field appearance="{{ formFieldAppearance }}">
                   <input type="text"
                          matInput
-                         formControlName="verificationcode"
-                         autocomplete="off">
-                  <mat-error>Please enter your verification code</mat-error>
+                         placeholder="country"
+                         [matAutocomplete]="auto"
+                         formControlName="country"
+                         required
+                         autocomplete="fubar">
+                  <mat-autocomplete #auto="matAutocomplete">
+                     <mat-option *ngFor="let country of filteredCountries | async"
+                                 [value]="country.country">
+                        {{ country.country }}
+                     </mat-option>
+                  </mat-autocomplete>
+                  <button matSuffix
+                          mat-icon-button
+                          (click)="clearCountry()">
+                     <mat-icon>clear</mat-icon>
+                  </button>
                </mat-form-field>
-            </section>
+            </div>
 
-            <button type="submit"
-                    mat-raised-button
-                    color="accent"
-                    [disabled]="verifyFormGroup.invalid">VERIFY
-            </button>
-         </form>
-
-         <br>
-         <div fxLayout="column"
-              fxLayoutAlign="start start"
-              fxLayoutGap="10px">
-            <div>Didn't receive the verification SMS?</div>
-            <div> <a class="action-links"
-                  style="cursor:pointer"
-                  (click)="resendEmailSubmit()">Resend Code</a></div>
-            <div> <a class="action-links"
-                  style="cursor:pointer"
-                  (click)="changePhoneNumber()">Change Phone Number</a></div>
+            <!-- CallingCode and Number-->
+            <div fxFlex="15">
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>cc*</mat-label>
+                  <input matInput
+                         value=""
+                         formControlName="calling_code"
+                         readonly>
+               </mat-form-field>
+            </div>
+            <div fxFlex="42">
+               <mat-form-field appearance="{{ formFieldAppearance }}">
+                  <mat-label>Phone number*</mat-label>
+                  <input matInput
+                         type="number"
+                         placeholder="phone"
+                         value=""
+                         formControlName="phone"
+                         autocomplete="fubar">
+               </mat-form-field>
+            </div>
          </div>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+         <button mat-raised-button
+                 (click)="onSendSMSCode()"
+                 color="accent"
+                 [disabled]=phoneNumFormGroup.invalid>SEND CODE</button>
+      </mat-dialog-actions>
 
+      <div style="margin-top:40px !important"
+           *ngIf="emailCodeSent">
+         <h2 mat-dialog-title>
+            Please enter the activation code that was sent to your phone, then
+            press VERIFY CODE.
+         </h2>
 
+         <mat-dialog-content [formGroup]="activationCodeFormGroup"
+                             autocomplete="off">
+            <mat-form-field appearance="{{ formFieldAppearance }}"
+                            fxFlex="43">
+               <mat-label>activation code</mat-label>
+               <input matInput
+                      type="text"
+                      placeholder="enter activation code"
+                      value=""
+                      formControlName="activationCode"
+                      autocomplete="fubar">
+            </mat-form-field>
+         </mat-dialog-content>
+         <!--  -->
+         <mat-dialog-actions>
+            <button mat-raised-button
+                    (click)="onVerifySMSCode()"
+                    color="accent"
+                    [disabled]="activationCodeFormGroup.invalid || !emailCodeSent">VERIFY
+               CODE</button>
+         </mat-dialog-actions>
       </div>
-   </mat-card>
+   </div>
+   <div class="right-side">
+      <mat-icon class="big"
+                color="accent">phonelink_setup</mat-icon>
+   </div>
 </section>

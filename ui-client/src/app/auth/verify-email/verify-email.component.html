@@ -1,83 +1,55 @@
 <section class="outer-container"
-         fxLayout="column"
-         fxLayoutAlign="start center">
-
-
-   <mat-card class="my-card"
-             fxLayout="column"
-             fxLayoutAlign="space-between start">
-
+         fxLayout="row"
+         fxLayoutAlign="space-evenly start">
+   <div class="left-side">
       <div class="header"
            fxLayout="row"
            fxLayoutAlign="start start"
            fxLayoutGap="20px">
-
-         <div fxFlex="75">
-            <div class="callToAction">Verify your email to start your free trial
-            </div>
-            <div class="callToActionStep">Verify Email</div>
+         <div>
+            <h1 mat-dialog-title>Verify your email to start your free trial</h1>
+            <!--  <h2 mat-dialog-title>Verify Email</h2> -->
          </div>
-         <mat-icon>mail_outline</mat-icon>
       </div>
 
-      <div fxLayout="column"
-           fxLayoutAlign="start stretch"
-           fxLayoutGap="20px">
-
+      <mat-dialog-content [formGroup]="myFormGroup"
+                          autocomplete="off">
          <div>
             We sent an email to:
-            <span style="font-family: Lucida Console; font-weight: bold">
-               {{userAuthInfo.email}}
+            <span style="text-decoration: underline">
+               {{userAuthInfo.email != '' ? userAuthInfo.email : "Error!"}}
             </span>
          </div>
-         <div>
+         <div style="margin: 12px 0;">
             To continue, please click on the activation link in the email, <br>
             or enter the activation code from the email below:
          </div>
-
-
-         <form [formGroup]="verifyFormGroup"
-               fxLayout="column"
-               fxLayoutAlign="space-between start"
-               fxLayoutGap="12px"
-               (ngSubmit)="verifyEmailSubmit()"
-               autocomplete="off">
-
-            <!-- these next two input lines are used to fake out Chrome to disable auto complete for the real fields -->
-            <input style="display:none;"
-                   type="text"
-                   name="somefakename" />
-            <input style="display:none;"
-                   type="password"
-                   name="anotherfakename" />
-            <section style="width: 100%">
-               <mat-form-field style="width: 75%">
-                  <mat-label>activation code</mat-label>
-                  <input type="text"
-                         matInput
-                         formControlName="activationcode"
-                         autocomplete="fubar">
-                  <mat-error>Please enter your activation code</mat-error>
-               </mat-form-field>
-            </section>
-
-            <button type="submit"
-                    mat-raised-button
-                    color="accent"
-                    [disabled]="verifyFormGroup.invalid">VERIFY
-            </button>
-         </form>
-
-
-         <div fxLayout="column"
-              fxLayoutAlign="start start">
+         <mat-form-field>
+            <mat-label>activation code</mat-label>
+            <input type="text"
+                   matInput
+                   formControlName="activationcode"
+                   autocomplete="fubar">
+            <mat-error>Please enter your activation code</mat-error>
+         </mat-form-field>
+      </mat-dialog-content>
+      <mat-dialog-actions fxLayout="column"
+                          fxLayoutAlign="start start">
+         <button type="submit"
+                 mat-raised-button
+                 (click)="onVerifySubmit()"
+                 color="accent"
+                 [disabled]=myFormGroup.invalid>VERIFY
+         </button>
+         <div style="margin-top: 1em;">
             <p>Didn't receive the activation email?</p>
-
             <a class="resend-email-tag"
-               (click)="resendEmailSubmit()">Resend Email</a>
+               (click)="onResendEmailSubmit()">Resend Email</a>
          </div>
+      </mat-dialog-actions>
+   </div>
+   <div class="right-side">
+      <mat-icon color="accent">mail_outline</mat-icon>
+   </div>
 
-
-      </div>
-   </mat-card>
 </section>

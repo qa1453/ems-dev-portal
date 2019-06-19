@@ -8,6 +8,23 @@ import { AuthStates, UserAuthInfo } from './authstates.enum';
 
 const USER_AUTH_STORAGE_KEY = 'DEVPORTAL_USER_AUTH_STATE';
 
+// temporary
+class ProxyUser {
+   firstname: string;
+   lastname: string;
+   email: string;
+   password: string;
+   company: string;
+   country: string;
+   calling_code: string;
+   phone: string;
+   email_code: string;
+   phone_code: string;
+   forgot_pwd_code: string;
+   admin: boolean;
+}
+
+
 @Injectable({
    providedIn: 'root'
 })
@@ -15,6 +32,9 @@ export class AuthService {
 
    private curUser: UserAuthInfo = null;
    private curUserSub = new BehaviorSubject<UserAuthInfo>(this.curUser);
+
+   // temporary structure/fcns to use to test the UI until the backend is available
+   private tempUsers: ProxyUser[] = [];
 
    constructor(
       @Inject(LOCAL_STORAGE) private storageService: StorageService,
@@ -26,6 +46,26 @@ export class AuthService {
          this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
       }
       this.curUserSub.next(this.curUser);
+
+      // create some users:
+      for (let i = 0; i < 10; i++) {
+         let adminUser = true;
+         this.tempUsers.push({
+            firstname: `First Name-${i}`,
+            lastname: `Last Name-${i}`,
+            email: `user${i}@mail.com`,
+            password: `user${i}`,
+            company: "ACME",
+            country: "Unitied States",
+            calling_code: "1",
+            phone: `312588230${1}`,
+            email_code: "",
+            phone_code: "",
+            forgot_pwd_code: "",
+            admin: adminUser
+         });
+         adminUser = false;
+      }
    }
 
    // Standard "getter" that is called when another piece of code references
@@ -62,7 +102,7 @@ export class AuthService {
       return retVal;
    }
 
-   login(user: LoginInterface) {
+   login = (user: LoginInterface): boolean => {
       this.curUser.state = AuthStates.loggedIn;
       this.curUser.email = user.email;
       this.curUser.firstname = "Test";
