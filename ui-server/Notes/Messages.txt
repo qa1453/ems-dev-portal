@@ -1,3 +1,37 @@
+Login Request 
+   email
+   password
+
+Login Response:
+   code:
+      200 for Success
+      40x Fail
+
+    message (when code NOT 200)
+      <string> when some meaningful error message
+         e.g. Login Failed. Email & Password Mismatch.
+   
+   message: when statusCode 200
+   {
+      sessionID
+      email
+      firstname
+      lastname
+      country
+      calling_code
+      phone
+      company
+      account_role (admin, regular, ...)
+      account_state
+      account_type
+      account_create_date
+      account_expired_date
+      account_balance
+      account_limit
+   }
+
+   
+
 SignUp Request
    Message Parameters in body, in json format.
       firstname
