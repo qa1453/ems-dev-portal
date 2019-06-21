@@ -3,7 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject } from 'rxjs/Subject';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
-import { AuthStates, UserAuthInfo } from './auth/authstates.enum';
+// import { AuthStates, UserAuthInfo } from './auth/authstates.enum';
+
+import { UserAccountStates } from './auth/user-session-info';
+
 import { Subscription, Observable } from 'rxjs';
 
 
@@ -19,9 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
    // When the user is logged in.
    @ViewChild('drawer') drawer;
 
-   AuthStates = AuthStates;
+   UserAccountStates = UserAccountStates;
    title = 'ems-devportal';
-   userAuthInfo$: Observable<UserAuthInfo>;
 
 
    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -29,11 +31,12 @@ export class AppComponent implements OnInit, OnDestroy {
          map(result => result.matches)
       );
 
-   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {
+   constructor(
+      private breakpointObserver: BreakpointObserver,
+      public authService: AuthService) {
    }
 
    ngOnInit() {
-      this.userAuthInfo$ = this.authService.userInfo;
    }
 
    ngOnDestroy() {

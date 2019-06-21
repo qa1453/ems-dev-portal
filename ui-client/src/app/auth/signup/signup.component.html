@@ -121,9 +121,9 @@
                       required
                       autocomplete="fubar">
                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let country of filteredCountries | async"
-                              [value]="country.country">
-                     {{ country.country }}
+                  <mat-option *ngFor="let country of ccService.filteredCountries$ | async "
+                              [value]="country.name">
+                     {{ country.name }}
                   </mat-option>
                </mat-autocomplete>
                <button matSuffix

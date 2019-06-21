@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthStates, UserAuthInfo } from 'src/app/auth/authstates.enum';
+import { UserAccountStates, UserSessionInfo } from 'src/app/auth/user-session-info';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignupComponent } from 'src/app/auth/signup/signup.component';
-import { LoginResult } from 'src/app/auth/login-interface';
+import { LoginResult } from 'src/app/auth/login/login-interface';
 import { ForgotPasswordComponent } from '../../auth/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from '../../auth/verify-email/verify-email.component';
 import { VerifySmsComponent } from 'src/app/auth/verify-sms/verify-sms.component';
@@ -18,8 +18,8 @@ import { VerifySmsComponent } from 'src/app/auth/verify-sms/verify-sms.component
 })
 export class TopnavComponent implements OnInit {
    @Output() toggleSideBar = new EventEmitter<void>();
-   AuthStates = AuthStates;
-   userAuthInfo$: Observable<UserAuthInfo>;
+   UserAccountStates = UserAccountStates;
+   userSessionInfo$: Observable<UserSessionInfo>;
 
    public topNavLoggedOut = [
       {
@@ -64,10 +64,13 @@ export class TopnavComponent implements OnInit {
          href: "help"
       }
    ];
-   constructor(private authService: AuthService, public dialog: MatDialog) { }
+   constructor(
+      public authService: AuthService,
+      public dialog: MatDialog
+   ) { }
 
    ngOnInit() {
-      this.userAuthInfo$ = this.authService.userInfo;
+      this.userSessionInfo$ = this.authService.userInfoAsObservable;
    }
 
    toggleSidebarCollapse(): void {

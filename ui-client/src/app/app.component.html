@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
    <mat-sidenav #drawer
-                *ngIf="(userAuthInfo$ | async)?.state === AuthStates.loggedIn"
+                *ngIf="(authService.userSessInfo$ | async)?.account_state === UserAccountStates.loggedIn"
                 class="sidenav"
                 fixedInViewport="true"
                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"

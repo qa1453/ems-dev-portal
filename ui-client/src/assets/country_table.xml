@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Table>
+    <Country>
+        <Data cc="+93" code="af" mcc="412" name="Afghanistan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+355" code="al" mcc="276" name="Albania" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+213" code="dz" mcc="603" name="Algeria" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-684" code="as" mcc="544" name="American Samoa" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+376" code="ad" mcc="213" name="Andorra" />
+    </Country>
+    <Country>
+        <Data cc="+244" code="ao" mcc="631" name="Angola" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-264" code="ai" name="Anguilla" tc="1" />
+    </Country>
+    <Country>
+        <Data code="aq" name="Antarctica" />
+    </Country>
+    <Country>
+        <Data cc="+1-268" code="ag" mcc="344" name="Antigua and barbuda" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+54" code="ar" mcc="722" name="Argentina" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+374" code="am" mcc="283" name="Armenia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+297" code="aw" mcc="363" name="Aruba" />
+    </Country>
+    <Country>
+        <Data cc="+61" code="au" mcc="505" name="Australia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+43" code="at" mcc="232" name="Austria" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+994" code="az" mcc="400" name="Azerbaijan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-242" code="bs" mcc="364" name="Bahamas" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+973" code="bh" mcc="426" name="Bahrain" />
+    </Country>
+    <Country>
+        <Data cc="+880" code="bd" mcc="470" name="Bangladesh" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-246" code="bb" mcc="342" name="Barbados" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+375" code="by" mcc="257" name="Belarus" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+32" code="be" mcc="206" name="Belgium" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+501" code="bz" mcc="702" name="Belize" />
+    </Country>
+    <Country>
+        <Data cc="+229" code="bj" mcc="616" name="Benin" />
+    </Country>
+    <Country>
+        <Data cc="+1-441" code="bm" mcc="350" name="Bermuda" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+975" code="bt" mcc="402" name="Bhutan" />
+    </Country>
+    <Country>
+        <Data cc="+591" code="bo" mcc="736" name="Bolivia, Plurinational State of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+387" code="ba" mcc="218" name="Bosnia and Herzegovina" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+267" code="bw" mcc="652" name="Botswana" />
+    </Country>
+    <Country>
+        <Data code="bv" name="Bouvet Island" />
+    </Country>
+    <Country>
+        <Data cc="+55" code="br" mcc="724" name="Brazil" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+246" code="io" name="British Indian Ocean Territory" />
+    </Country>
+    <Country>
+        <Data cc="+673" code="bn" mcc="528" name="Brunei Darussalam" />
+    </Country>
+    <Country>
+        <Data cc="+359" code="bg" mcc="284" name="Bulgaria" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+226" code="bf" mcc="613" name="Burkina Faso" />
+    </Country>
+    <Country>
+        <Data cc="+257" code="bi" mcc="642" name="Burundi" />
+    </Country>
+    <Country>
+        <Data cc="+682" code="ck" mcc="548" name="COOK ISLANDS" />
+    </Country>
+    <Country>
+        <Data cc="+855" code="kh" mcc="456" name="Cambodia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+237" code="cm" mcc="624" name="Cameroon" />
+    </Country>
+    <Country>
+        <Data cc="+1" code="ca" mcc="302" name="Canada" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+238" code="cv" mcc="625" name="Cape Verde" />
+    </Country>
+    <Country>
+        <Data cc="+1-345" code="ky" mcc="346" name="Cayman Islands" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+236" code="cf" mcc="623" name="Central African Republic" />
+    </Country>
+    <Country>
+        <Data code="ec" name="Ceuta, Melilla" />
+    </Country>
+    <Country>
+        <Data cc="+235" code="td" mcc="622" name="Chad" />
+    </Country>
+    <Country>
+        <Data cc="+56" code="cl" mcc="730" name="Chile" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+86" code="cn" mcc="460" name="China" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+61" code="cx" name="Christmas Island" />
+    </Country>
+    <Country>
+        <Data code="cc" name="Cocos (Keeling) Islands" />
+    </Country>
+    <Country>
+        <Data cc="+57" code="co" mcc="732" name="Colombia" tc="09,01,03" />
+    </Country>
+    <Country>
+        <Data cc="+269" code="km" mcc="654" name="Comoros" />
+    </Country>
+    <Country>
+        <Data cc="+242" code="cg" mcc="629" name="Congo, Republic of" />
+    </Country>
+    <Country>
+        <Data cc="+243" code="cd" mcc="630" name="Congo, the Democratic Republic of the" />
+    </Country>
+    <Country>
+        <Data cc="+506" code="cr" mcc="712" name="Costa Rica" />
+    </Country>
+    <Country>
+        <Data cc="+385" code="hr" mcc="219" name="Croatia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+53" code="cu" mcc="368" name="Cuba" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+357" code="cy" mcc="280" name="Cyprus" />
+    </Country>
+    <Country>
+        <Data cc="+420" code="cz" mcc="230" name="Czech Republic" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+225" code="ci" mcc="612" name="CÔTE D'IVOIRE" />
+    </Country>
+    <Country>
+        <Data cc="+45" code="dk" mcc="238" name="Denmark" />
+    </Country>
+    <Country>
+        <Data cc="+253" code="dj" mcc="638" name="Djibouti" />
+    </Country>
+    <Country>
+        <Data cc="+1-767" code="dm" mcc="366" name="Dominica" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+1-809" code="do" mcc="370" name="Dominican Republic" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+20" code="eg" mcc="602" name="Egypt" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+503" code="sv" mcc="706" name="El Salvador" />
+    </Country>
+    <Country>
+        <Data cc="+240" code="gq" mcc="627" name="Equatorial Guinea" />
+    </Country>
+    <Country>
+        <Data cc="+291" code="er" mcc="657" name="Eritrea" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+372" code="ee" mcc="248" name="Estonia" />
+    </Country>
+    <Country>
+        <Data cc="+251" code="et" mcc="636" name="Ethiopia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+500" code="fk" mcc="750" name="Falkland Islands" />
+    </Country>
+    <Country>
+        <Data cc="+298" code="fo" mcc="288" name="Faroe Islands" />
+    </Country>
+    <Country>
+        <Data cc="+679" code="fj" mcc="542" name="Fiji" />
+    </Country>
+    <Country>
+        <Data cc="+358" code="fi" mcc="244" name="Finland" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+33" code="fr" mcc="208" name="France" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+594" code="gf" mcc="742" name="French Guiana" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+689" code="pf" mcc="547" name="French Polynesia" />
+    </Country>
+    <Country>
+        <Data code="tf" name="French Southern Territories" />
+    </Country>
+    <Country>
+        <Data cc="+241" code="ga" mcc="628" name="Gabon" />
+    </Country>
+    <Country>
+        <Data cc="+220" code="gm" mcc="607" name="Gambia" />
+    </Country>
+    <Country>
+        <Data cc="+955" code="ge" mcc="282" name="Georgia" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+49" code="de" mcc="262" name="Germany" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+233" code="gh" mcc="620" name="Ghana" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+350" code="gi" mcc="266" name="Gibraltar" />
+    </Country>
+    <Country>
+        <Data cc="+30" code="gr" mcc="202" name="Greece" />
+    </Country>
+    <Country>
+        <Data cc="+299" code="gl" mcc="290" name="Greenland" />
+    </Country>
+    <Country>
+        <Data cc="+1-473" code="gd" mcc="352" name="Grenada" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+590" code="gp" mcc="340" name="Guadeloupe" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-671" code="gu" mcc="535" name="Guam" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+502" code="gt" mcc="704" name="Guatemala" />
+    </Country>
+    <Country>
+        <Data cc="+224" code="gn" mcc="611" name="Guinea" />
+    </Country>
+    <Country>
+        <Data cc="+245" code="gw" mcc="632" name="Guinea-Bissau" />
+    </Country>
+    <Country>
+        <Data cc="+592" code="gy" mcc="738" name="Guyana" />
+    </Country>
+    <Country>
+        <Data cc="+509" code="ht" mcc="372" name="Haiti" />
+    </Country>
+    <Country>
+        <Data code="hm" name="Heard Island and McDonald Islands" />
+    </Country>
+    <Country>
+        <Data cc="+379" code="va" mcc="225" name="Holy See (Vatican City State)" />
+    </Country>
+    <Country>
+        <Data cc="+504" code="hn" mcc="708" name="Honduras" />
+    </Country>
+    <Country>
+        <Data cc="+852" code="hk" mcc="454" name="Hong Kong" />
+    </Country>
+    <Country>
+        <Data cc="+36" code="hu" mcc="216" name="Hungary" tc="06" />
+    </Country>
+    <Country>
+        <Data cc="+354" code="is" mcc="274" name="Iceland" />
+    </Country>
+    <Country>
+        <Data cc="+91" code="in" mcc="404,405" name="India" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+62" code="id" mcc="510" name="Indonesia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+98" code="ir" mcc="432" name="Iran, Islamic Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+964" code="iq" mcc="418" name="Iraq" />
+    </Country>
+    <Country>
+        <Data cc="+353" code="ie" mcc="272" name="Ireland" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+972" code="il" mcc="425" name="Israel" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+39" code="it" mcc="222" name="Italy" />
+    </Country>
+    <Country>
+        <Data cc="+1-876" code="jm" mcc="338" name="Jamaica" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+81" code="jp" mcc="440,441" name="Japan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+962" code="jo" mcc="416" name="Jordan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+7-7" code="kz" mcc="401" name="Kazakhstan" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+254" code="ke" mcc="639" name="Kenya" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+686" code="ki" mcc="545" name="Kiribati" />
+    </Country>
+    <Country>
+        <Data cc="+965" code="kw" mcc="419" name="Kuwait" />
+    </Country>
+    <Country>
+        <Data cc="+996" code="kg" mcc="437" name="Kyrgyzstan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+856" code="la" name="Lao People's Democratic Republic" />
+    </Country>
+    <Country>
+        <Data cc="+371" code="lv" mcc="247" name="Latvia" />
+    </Country>
+    <Country>
+        <Data cc="+961" code="lb" mcc="415" name="Lebanon" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+266" code="ls" mcc="651" name="Lesotho" />
+    </Country>
+    <Country>
+        <Data cc="+231" code="lr" mcc="618" name="Liberia" />
+    </Country>
+    <Country>
+        <Data cc="+281" code="ly" mcc="606" name="Libyan Arab Jamahiriya" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+423" code="li" mcc="295" name="Liechtenstein" />
+    </Country>
+    <Country>
+        <Data cc="+370" code="lt" mcc="246" name="Lithuania" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+352" code="lu" mcc="270" name="Luxembourg" />
+    </Country>
+    <Country>
+        <Data cc="+853" code="mo" mcc="455" name="Macao (Macou)" />
+    </Country>
+    <Country>
+        <Data cc="+389" code="mk" mcc="294" name="Macedonia, The Former Yugoslav Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+261" code="mg" mcc="646" name="Madagascar" />
+    </Country>
+    <Country>
+        <Data cc="+265" code="mw" mcc="650" name="Malawi" />
+    </Country>
+    <Country>
+        <Data cc="+60" code="my" mcc="502" name="Malaysia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+960" code="mv" mcc="472" name="Maldives" />
+    </Country>
+    <Country>
+        <Data cc="+223" code="ml" mcc="610" name="Mali" />
+    </Country>
+    <Country>
+        <Data cc="+356" code="mt" mcc="278" name="Malta" />
+    </Country>
+    <Country>
+        <Data cc="+692" code="mh" name="Marshall Islands" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+596" code="mq" mcc="340" name="Martinique" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+222" code="mr" mcc="609" name="Mauritania" />
+    </Country>
+    <Country>
+        <Data cc="+230" code="mu" mcc="617" name="Mauritius" />
+    </Country>
+    <Country>
+        <Data cc="+262" code="yt" name="Mayotte" />
+    </Country>
+    <Country>
+        <Data cc="+52" code="mx" mcc="334" name="Mexico" tc="01" />
+    </Country>
+    <Country>
+        <Data cc="+691" code="fm" mcc="550" name="Micronesia, Federated States of" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+373" code="md" mcc="259" name="Moldova, Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+377" code="mc" mcc="212" name="Monaco" />
+    </Country>
+    <Country>
+        <Data cc="+976" code="mn" mcc="428" name="Mongolia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+382" code="me" mcc="297" name="Montenegro" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-664" code="ms" mcc="354" name="Montserrat" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+212" code="ma" mcc="604" name="Morocco" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+258" code="mz" mcc="643" name="Mozambique" />
+    </Country>
+    <Country>
+        <Data cc="+95" code="mm" mcc="414" name="Myanmar" />
+    </Country>
+    <Country>
+        <Data cc="+264" code="na" mcc="649" name="Namibia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+674" code="nr" name="Naura" />
+    </Country>
+    <Country>
+        <Data cc="+977" code="np" mcc="429" name="Nepal" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+31" code="nl" mcc="204" name="Netherlands" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+599" code="an" mcc="362" name="Netherlands Antilles" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+687" code="nc" mcc="546" name="New Caledonia" />
+    </Country>
+    <Country>
+        <Data cc="+64" code="nz" mcc="530" name="New Zealand" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+505" code="ni" mcc="710" name="Nicaragua" />
+    </Country>
+    <Country>
+        <Data cc="+227" code="ne" mcc="614" name="Niger" />
+    </Country>
+    <Country>
+        <Data cc="+234" code="ng" mcc="621" name="Nigeria" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+683" code="nu" name="Niue" />
+    </Country>
+    <Country>
+        <Data cc="+6723" code="nf" name="Norfolk Island" />
+    </Country>
+    <Country>
+        <Data cc="+850" code="kp" mcc="467" name="North Korea, Democratic People's Republic of" />
+    </Country>
+    <Country>
+        <Data cc="+1-670" code="mp" name="Northern Mariana Islands" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+47" code="no" mcc="242" name="Norway" />
+    </Country>
+    <Country>
+        <Data cc="+968" code="om" mcc="422" name="Oman" />
+    </Country>
+    <Country>
+        <Data cc="+92" code="pk" mcc="410" name="Pakistan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+680" code="pw" name="Palau" />
+    </Country>
+    <Country>
+        <Data code="ps" name="Palestinian Territory, Occupied" />
+    </Country>
+    <Country>
+        <Data cc="+507" code="pa" mcc="714" name="Panama" />
+    </Country>
+    <Country>
+        <Data cc="+675" code="pg" mcc="537" name="Papua New Guinea" />
+    </Country>
+    <Country>
+        <Data cc="+595" code="py" mcc="744" name="Paraguay" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+51" code="pe" mcc="716" name="Peru" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+63" code="ph" mcc="515" name="Philippines" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+870" code="pn" name="Pitcairn" />
+    </Country>
+    <Country>
+        <Data cc="+48" code="pl" mcc="260" name="Poland" />
+    </Country>
+    <Country>
+        <Data cc="+351" code="pt" mcc="268" name="Portugal" />
+    </Country>
+    <Country>
+        <Data cc="+1-787" code="pr" mcc="330" name="Puerto Rico" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+974" code="qa" mcc="427" name="Qatar" />
+    </Country>
+    <Country>
+        <Data cc="+40" code="ro" mcc="226" name="Romania" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+7" code="ru" mcc="250" name="Russian Federation" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+250" code="rw" mcc="635" name="Rwanda" />
+    </Country>
+    <Country>
+        <Data cc="+262" code="re" mcc="647" name="RÉUNION" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+290" code="sh" name="Saint Helena, Ascension and Tristan da Cunha" />
+    </Country>
+    <Country>
+        <Data cc="+1-869" code="kn" mcc="356" name="Saint Kitts and Nevis" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+1-758" code="lc" mcc="358" name="Saint Lucia" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+508" code="pm" mcc="308" name="Saint Pierre and Miquelon" />
+    </Country>
+    <Country>
+        <Data cc="+1-784" code="vc" mcc="360" name="Saint Vincent and the Grenadines" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+685" code="ws" mcc="549" name="Samoa" />
+    </Country>
+    <Country>
+        <Data cc="+378" code="sm" mcc="292" name="San Marino" />
+    </Country>
+    <Country>
+        <Data cc="+239" code="st" mcc="626" name="Sao Tome and Principe" />
+    </Country>
+    <Country>
+        <Data cc="+966" code="sa" mcc="420" name="Saudi Arabia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+221" code="sn" mcc="608" name="Senegal" />
+    </Country>
+    <Country>
+        <Data cc="+381" code="rs" mcc="220" name="Serbia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+248" code="sc" mcc="633" name="Seychelles" />
+    </Country>
+    <Country>
+        <Data cc="+232" code="sl" mcc="619" name="Sierra Leone" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+65" code="sg" mcc="525" name="Singapore" />
+    </Country>
+    <Country>
+        <Data cc="+421" code="sk" mcc="231" name="Slovakia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+386" code="si" mcc="293" name="Slovenia" />
+    </Country>
+    <Country>
+        <Data cc="+677" code="sb" mcc="540" name="Solomon Islands" />
+    </Country>
+    <Country>
+        <Data cc="+252" code="so" mcc="637" name="Somalia" />
+    </Country>
+    <Country>
+        <Data cc="+27" code="za" mcc="655" name="South Africa" tc="0" />
+    </Country>
+    <Country>
+        <Data code="gs" name="South Georgia and the South Sandwich Islands" />
+    </Country>
+    <Country>
+        <Data cc="+82" code="kr" mcc="450" name="South Korea, Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+34" code="es" mcc="214" name="Spain" />
+    </Country>
+    <Country>
+        <Data cc="+94" code="lk" mcc="413" name="Sri Lanka" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+249" code="sd" mcc="634" name="Sudan" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+597" code="sr" mcc="746" name="Suriname" tc="0" />
+    </Country>
+    <Country>
+        <Data code="sj" name="Svalbard and Jan Mayen" />
+    </Country>
+    <Country>
+        <Data cc="+268" code="sz" mcc="653" name="Swaziland" />
+    </Country>
+    <Country>
+        <Data cc="+46" code="se" mcc="240" name="Sweden" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+41" code="ch" mcc="228" name="Switzerland" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+963" code="sy" mcc="417" name="Syrian Arab Republic" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+886" code="tw" mcc="466" name="Taiwan, Province of China" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+992" code="tj" mcc="436" name="Tajikistan" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+255" code="tz" mcc="640" name="Tanzania, United Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+66" code="th" mcc="520" name="Thailand" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+670" code="tl" mcc="514" name="Timor-leste (East Timor)" />
+    </Country>
+    <Country>
+        <Data cc="+228" code="tg" mcc="615" name="Togo" />
+    </Country>
+    <Country>
+        <Data cc="+690" code="tk" name="Tokelau" />
+    </Country>
+    <Country>
+        <Data cc="+676" code="to" mcc="539" name="Tonga" />
+    </Country>
+    <Country>
+        <Data cc="+1-868" code="tt" mcc="374" name="Trinidad and Tobago" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+216" code="tn" mcc="605" name="Tunisia" />
+    </Country>
+    <Country>
+        <Data cc="+90" code="tr" mcc="286" name="Turkey" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+993" code="tm" mcc="438" name="Turkmenistan" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+1-649" code="tc" mcc="376" name="Turks and Caicos Islands" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+688" code="tv" name="Tuvalu" />
+    </Country>
+    <Country>
+        <Data cc="+1" code="us" mcc="310,311" name="USA" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+256" code="ug" mcc="641" name="Uganda" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+380" code="ua" mcc="255" name="Ukraine" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+971" code="ae" mcc="424" name="United Arab Emirates" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+44" code="gb" mcc="234,235" name="United Kingdom" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1" code="us" mcc="310,311" name="United States" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+1" code="um" name="United States Minor Outlying Islands" />
+    </Country>
+    <Country>
+        <Data cc="+598" code="uy" mcc="748" name="Uruguay" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+998" code="uz" mcc="434" name="Uzbekistan" tc="8" />
+    </Country>
+    <Country>
+        <Data cc="+678" code="vu" mcc="541" name="Vanuatu" />
+    </Country>
+    <Country>
+        <Data cc="+58" code="ve" mcc="734" name="Venezuela, Bolivarian Republic of" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+84" code="vn" mcc="452" name="VietNam" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+1-284" code="vg" mcc="348" name="Virgin Islands, British" tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+1-340" code="vi" mcc="310" name="Virgin Islands, U.S." tc="1" />
+    </Country>
+    <Country>
+        <Data cc="+681" code="wf" name="Wallis and Futuna" />
+    </Country>
+    <Country>
+        <Data cc="+212" code="eh" name="Western Sahara" />
+    </Country>
+    <Country>
+        <Data cc="+967" code="ye" mcc="421" name="Yemen" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+260" code="zm" mcc="645" name="Zambia" tc="0" />
+    </Country>
+    <Country>
+        <Data cc="+263" code="zw" mcc="648" name="Zimbabwe" tc="0" />
+    </Country>
+</Table>

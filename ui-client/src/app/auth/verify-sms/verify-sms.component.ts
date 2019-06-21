@@ -1,12 +1,9 @@
 import { Component, OnInit, Optional, Inject, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { UserAuthInfo } from '../authstates.enum';
+import { UserSessionInfo } from '../user-session-info';
 import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
-import { ICountries, ICallingCodes } from '../countries-interface';
-import { Observable } from 'rxjs';
-import { CountryCodesService } from '../countrycodes.service';
-import { startWith, delay, map } from 'rxjs/operators';
+import { CountryService, ICountry } from 'src/app/services/country.service';
 
 @Component({
    selector: 'app-verify-sms',
@@ -16,21 +13,16 @@ import { startWith, delay, map } from 'rxjs/operators';
 export class VerifySmsComponent implements OnInit, AfterViewInit, OnDestroy {
    public phoneNumFormGroup: FormGroup;
    public activationCodeFormGroup: FormGroup;
-   public userAuthInfo: UserAuthInfo;
+   public userSessionInfo: UserSessionInfo;
    public formFieldAppearance: string = "legacy";
    public emailCodeSent = false;
 
-   // allCountries is the complete list of allCountries (the initial value)
-   // filteredCountries is the list that's filtered based on user input
-   public allCountries: ICountries[];
-   public filteredCountries: Observable<ICountries[]>;
-   public callingCodes: ICallingCodes[];
 
    constructor(public dialogRef: MatDialogRef<VerifySmsComponent>,
       @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
       public _snackBar: MatSnackBar,
       private authService: AuthService,
-      private countryCodeService: CountryCodesService) {
+      private ccService: CountryService) {
    }
 
    ngOnInit() {
@@ -50,24 +42,10 @@ export class VerifySmsComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       // subscribe to userAutoChanges
-      this.authService.getUserInfoObs().subscribe((userAuthInfo) => {
-         console.log("VerifyEmail. New userAuthInfo obj received: " + userAuthInfo);
-         this.userAuthInfo = userAuthInfo;
+      this.authService.userInfoAsObservable.subscribe((userSessionInfo) => {
+         console.log("VerifyEmail. New userAuthInfo obj received: " + userSessionInfo);
+         this.userSessionInfo = userSessionInfo;
       });
-
-
-      this.countryCodeService.getCountries()
-         .subscribe(data => {
-            // store the data 
-            this.allCountries = data.sort(this.myCompare);
-            console.log("Countries Loaded");
-         });
-
-      this.countryCodeService.getCallingCodes()
-         .subscribe(data => {
-            this.callingCodes = data;
-            console.log("Calling Codes Loaded");
-         });
    }
 
 
@@ -77,47 +55,29 @@ export class VerifySmsComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    onChanges(): void {
-      // register a change handler for the country field
-      this.filteredCountries = this.phoneNumFormGroup.get('country').valueChanges
-         .pipe(
-            startWith(''),
-            delay(0),
-            map(val => this.filterCountries(val))
-         );
-      this.phoneNumFormGroup.get('country').valueChanges.subscribe(val => {
-         // take the value and try to lookup a calling code for this country
-         const ccRecs: ICallingCodes[] = this.callingCodes.filter((ccRec) => { return ccRec.country === val });
-         let ccVal = "-1";
-         if (ccRecs.length === 0) {
-            // this.phoneNumFormGroup.get('countrty').setErrors({ 'invalid': true })
-         } else {
-            // this.phoneNumFormGroup.get('countrty').setErrors({ 'invalid': false })
-            ccVal = `+${ccRecs[0].calling_code}`;
-         }
-         this.phoneNumFormGroup.get('calling_code').setValue(ccVal);
-      });
-   }
 
-   private filterCountries(val: string): ICountries[] {
-      const lcVal = val ? val.toLowerCase() : '';
-      if (!this.allCountries) {
-         return [];
-      }
-      return this.allCountries.filter(c => c.country.toLowerCase().indexOf(lcVal) != -1);
+      // register a change handler for the country field
+      // when it changes, update the filteredCountries and
+      // also set the calling code to the first cc value from the filteredCountries
+
+      this.phoneNumFormGroup.get('country')
+         .valueChanges.subscribe(val => {
+
+            // update the list of filtered countries
+            this.ccService.applyCountryFilter(val);
+
+            // now see if the country is an exact match,
+            // and if so, update the callling code value.
+            let tempRec: ICountry[] =
+               this.ccService.allCountries.filter(
+                  (x) => x.name === val);
+            const newCCVal = (tempRec.length > 0) ? tempRec[0].cc : "-1";
+            this.phoneNumFormGroup.get('calling_code').setValue(newCCVal);
+         });
    }
 
    public clearCountry() {
       this.phoneNumFormGroup.get('country').setValue('');
-   }
-
-
-   myCompare(a, b) {
-      let countryA = a.country.toUpperCase();
-      let countryB = b.country.toUpperCase();
-
-      if (countryA > countryB) return (1);
-      if (countryA < countryB) return (-1);
-      return 0;
    }
 
    ngOnDestroy() {

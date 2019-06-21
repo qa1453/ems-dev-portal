@@ -1,12 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, Optional, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Subject, Observable } from 'rxjs';
-import { startWith, delay, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { CountryCodesService } from '../countrycodes.service';
-import { ICountries, ICallingCodes } from '../countries-interface';
+import { CountryService, ICountry } from 'src/app/services/country.service';
 
 
 // import { RecaptchaModule } from 'ng-recaptcha';
@@ -20,17 +17,11 @@ import { ICountries, ICallingCodes } from '../countries-interface';
 export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
 
    public myFormGroup: FormGroup;
-   private formSubmitAttempt = false;
+   private formSubmitted = false;
 
    formFieldAppearance: string = "legacy"; // legayc|standard|fill|outline
    passwordFieldType: string = "password";
    password2FieldType: string = "password";
-
-   // allCountries is the complete list of allCountries (the initial value)
-   // filteredCountries is the list that's filtered based on user input
-   public allCountries: ICountries[];
-   public filteredCountries: Observable<ICountries[]>;
-   public callingCodes: ICallingCodes[];
 
 
    constructor(
@@ -38,7 +29,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
       private authService: AuthService,
       private router: Router,
-      private countryCodeService: CountryCodesService
+      private ccService: CountryService
    ) {
    }
 
@@ -46,14 +37,15 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       //  recaptcha: new FormControl(null, Validators.required)
       this.myFormGroup = new FormGroup({
          firstname: new FormControl(null,
-            { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)] }),
+            { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(100)] }),
          lastname: new FormControl(null,
-            { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)] }),
+            { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100)] }),
          email: new FormControl(null,
             { validators: [Validators.required, Validators.email] }),
          password: new FormControl(null,
             { validators: [Validators.required, Validators.minLength(6)] }),
-         password2: new FormControl(),
+         password2: new FormControl(null,
+            { validators: [Validators.required, Validators.minLength(6)] }),
          company: new FormControl(null),
          country: new FormControl(null, { validators: [Validators.required] }),
          calling_code: new FormControl(null,
@@ -61,56 +53,34 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
          phone: new FormControl(null,
             { validators: [Validators.required] })
       });
-
-      this.countryCodeService.getCountries()
-         .subscribe(data => {
-            // store the data 
-            this.allCountries = data.sort(this.myCompare);
-         });
-
-      this.countryCodeService.getCallingCodes()
-         .subscribe(data => {
-            this.callingCodes = data;
-         });
    }
 
    onChanges(): void {
       // register a change handler for the country field
-      this.filteredCountries = this.myFormGroup.get('country').valueChanges
-         .pipe(
-            startWith(''),
-            delay(0),
-            map(val => this.filterCountries(val))
-         );
-      this.myFormGroup.get('country').valueChanges.subscribe(val => {
-         // take the value and try to lookup a calling code for this country
-         const ccRecs: ICallingCodes[] = this.callingCodes.filter((ccRec) => { return ccRec.country === val });
-         const ccVal = ccRecs.length > 0 ? ccRecs[0].calling_code : '-1';
-         this.myFormGroup.get('calling_code').setValue(ccVal);
-      });
+      // when it changes, update the filteredCountries and
+      // also set the calling code to the first cc value from the filteredCountries
+
+      this.myFormGroup.get('country')
+         .valueChanges.subscribe(val => {
+
+            // update the list of filtered countries
+            this.ccService.applyCountryFilter(val);
+
+            // now see if the country is an exact match,
+            // and if so, update the callling code value.
+            let tempRec: ICountry[] =
+               this.ccService.allCountries.filter(
+                  (x) => x.name === val);
+            const newCCVal = (tempRec.length > 0) ? tempRec[0].cc : "-1";
+            this.myFormGroup.get('calling_code').setValue(newCCVal);
+         });
    }
 
-   private filterCountries(val: string): ICountries[] {
-      const lcVal = val ? val.toLowerCase() : '';
-      if (!this.allCountries) {
-         return [];
-      }
-      return this.allCountries.filter(c => c.country.toLowerCase().indexOf(lcVal) != -1);
-   }
 
    public clearCountry() {
       this.myFormGroup.get('country').setValue('');
    }
 
-
-   myCompare(a, b) {
-      let countryA = a.country.toUpperCase();
-      let countryB = b.country.toUpperCase();
-
-      if (countryA > countryB) return (1);
-      if (countryA < countryB) return (-1);
-      return 0;
-   }
 
    ngAfterViewInit() {
       // setup event handlers to handle changes to form.
@@ -125,33 +95,20 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log(`Resolved captcha with response ${captchaResponse}:`);
    }
 
-
-   passwordValidator(control: FormControl): { [key: string]: any } {
-      const value = control.value || '';
-      console.log("Validating password! " + value);
-      return null;
-   } false
-
    onCancel = () => {
-      this.dialogRef.close(true /* false*/);
+      this.dialogRef.close(false);
    }
 
    onSubmit = () => {
-      this.dialogRef.close(true);
+      if (this.formSubmitted === false) {
+         this.formSubmitted = true;
+         // submit this form to the server for processing
+         if (1) {
+            this.dialogRef.close(true);
+         }
+      }
+      // ignore two or more quick submission attempts
    }
-
-   // formSubmit() {
-
-   //    console.log(this.phoneNumFormGroup);
-
-   //    const result = this.authService.signup(this.phoneNumFormGroup.value);
-   //    if (result) {
-   //       alert(`SIGNUP Accepted for user ${this.phoneNumFormGroup.value.email}`);
-   //       this.router.navigate(['/home']);
-   //    } else {
-   //       alert("Invalid User: " + this.phoneNumFormGroup.value.email);
-   //    }
-   // }
 
    togglePasswordVisibility() {
       this.passwordFieldType = (this.passwordFieldType === "password") ? "text" : "password";

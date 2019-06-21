@@ -1,7 +1,7 @@
-<!-- to avoid multiple implicit subscriptions, do it once and then "switch" on the state value -->
-<div [ngSwitch]="(userAuthInfo$ | async)?.state">
+<!-- <div [ngSwitch]="(authService.userSessInfo$ | async)?.account_state"> -->
+<div *ngIf="authService.userSessInfo$ | async; let userSessInfo; else loading ">
 
-   <mat-toolbar *ngSwitchCase="AuthStates.loggedOut"
+   <mat-toolbar *ngIf="userSessInfo.account_state == UserAccountStates.loggedOut"
                 class="mat-toolbar"
                 fxLayout="row"
                 fxLayoutAlign="space-evenly center">
@@ -58,13 +58,13 @@
       </div>
    </mat-toolbar>
 
-   <mat-toolbar *ngSwitchCase="AuthStates.emailConfirmPending"
+   <!--    <mat-toolbar *ngSwitchCase="UserAccountStates.emailConfirmPending"
                 class="mat-toolbar"
                 fxLayout="row"
                 fxLayoutAlign="space-between stretch">
-   </mat-toolbar>
+   </mat-toolbar> -->
 
-   <mat-toolbar *ngSwitchCase="AuthStates.loggedIn"
+   <mat-toolbar *ngIf="userSessInfo.account_state == UserAccountStates.loggedIn"
                 class="mat-toolbar"
                 fxLayout="row"
                 fxLayoutAlign="space-between stretch">
@@ -93,7 +93,9 @@
 
          <button mat-button
                  [matMenuTriggerFor]="profile_dropdown">
-            <span>{{ getFullName() | uppercase }}</span>
+            <span>{{ userSessInfo.firstname | uppercase }}
+               {{ userSessInfo.lastname | uppercase }}
+            </span>
             <mat-icon>keyboard_arrow_down</mat-icon>
          </button>
 
@@ -132,5 +134,5 @@
          </button>
       </div>
    </mat-toolbar>
-
+   <ng-template #loading>Waiting for user info...</ng-template>
 </div>

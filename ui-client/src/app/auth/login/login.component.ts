@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { LoginResult } from '../login-interface';
+import { LoginResult } from './login-interface';
 
 @Component({
    selector: 'app-login',
@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
       public dialogRef: MatDialogRef<LoginComponent>,
       @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
       private authService: AuthService, private router: Router) {
-
    }
 
    ngOnInit() {
@@ -42,8 +41,8 @@ export class LoginComponent implements OnInit {
 
    onLogin(): void {
 
-      let validUser = this.authService.login(this.loginForm.value);
-      if (validUser) {
+      let retVal = this.authService.login(this.loginForm.value);
+      if (retVal) {
          this.dialogRef.close(LoginResult.Success);
          this.router.navigate(['/home']);
       } else {

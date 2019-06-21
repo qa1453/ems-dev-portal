@@ -8,6 +8,11 @@
 
    .mat-form-field {
       &.mat-focused {
+
+         input {
+            caret-color: mat-color($foreground, secondary-text) !important;
+         }
+
          .mat-form-field-label {
             color: mat-color($foreground, secondary-text) !important;
          }

@@ -32,9 +32,11 @@
                    matInput
                    placeholder="email"
                    formControlName="email"
-                   autocomplete="chromeworkaround">
+                   autocomplete="chromeworkaround"
+                   tabindex="1">
             <button matSuffix
-                    mat-icon-button>
+                    mat-icon-button
+                    tabindex="-1">
                <mat-icon matSuffix>email</mat-icon>
             </button>
             <!-- <mat-hint>Please enter a valid email</mat-hint> -->
@@ -46,10 +48,12 @@
                    matInput
                    placeholder="password"
                    formControlName="password"
-                   autocomplete="chromeworkaround">
+                   autocomplete="chromeworkaround"
+                   tabindex="2">
             <button matSuffix
                     mat-icon-button
-                    (click)="togglePasswordVisibility()">
+                    (click)="togglePasswordVisibility()"
+                    tabindex="-1">
                <mat-icon>
                   {{ passwordFieldType === 'password' ? 'visibility_off' : 'visibility_on' }}
                </mat-icon>

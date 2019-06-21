@@ -1,116 +1,101 @@
 import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { SignupInterface } from './signup-interface';
-import { LoginInterface } from './login-interface';
+import { SignupInterface } from './signup/signup-interface';
+import { LoginInterface } from './login/login-interface';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { AuthStates, UserAuthInfo } from './authstates.enum';
+// import { AuthStates, UserAuthInfo } from './user-info.interface';
+import { UserAccountRoles, UserAccountStates, UserAccountTypes, UserSessionInfo } from './user-session-info';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const USER_AUTH_STORAGE_KEY = 'DEVPORTAL_USER_AUTH_STATE';
-
-// temporary
-class ProxyUser {
-   firstname: string;
-   lastname: string;
-   email: string;
-   password: string;
-   company: string;
-   country: string;
-   calling_code: string;
-   phone: string;
-   email_code: string;
-   phone_code: string;
-   forgot_pwd_code: string;
-   admin: boolean;
-}
-
 
 @Injectable({
    providedIn: 'root'
 })
 export class AuthService {
 
-   private curUser: UserAuthInfo = null;
-   private curUserSub = new BehaviorSubject<UserAuthInfo>(this.curUser);
+   private curUser: UserSessionInfo = null;
+   private curUserSubject = new BehaviorSubject<UserSessionInfo>(this.curUser);
 
-   // temporary structure/fcns to use to test the UI until the backend is available
-   private tempUsers: ProxyUser[] = [];
 
    constructor(
       @Inject(LOCAL_STORAGE) private storageService: StorageService,
-      private router: Router) {
+      private router: Router,
+      private http: HttpClient) {
 
       this.curUser = this.storageService.get(USER_AUTH_STORAGE_KEY);
       if (!this.curUser) {
          this.initCurUserObj();
          this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
       }
-      this.curUserSub.next(this.curUser);
-
-      // create some users:
-      for (let i = 0; i < 10; i++) {
-         let adminUser = true;
-         this.tempUsers.push({
-            firstname: `First Name-${i}`,
-            lastname: `Last Name-${i}`,
-            email: `user${i}@mail.com`,
-            password: `user${i}`,
-            company: "ACME",
-            country: "Unitied States",
-            calling_code: "1",
-            phone: `312588230${1}`,
-            email_code: "",
-            phone_code: "",
-            forgot_pwd_code: "",
-            admin: adminUser
-         });
-         adminUser = false;
-      }
+      this.curUserSubject.next(this.curUser);
    }
 
    // Standard "getter" that is called when another piece of code references
    // this element as a variable (i.e. not referenced as a function call)
    // can be referenced in templates or other TS code.
-   get userInfo() {
-      return this.curUserSub.asObservable();
+   get userInfoAsObservable() {
+      return this.curUserSubject.asObservable();
    }
 
-   getUserInfoObs() {
-      return this.curUserSub.asObservable();
+   get userSessInfo$() {
+      return this.curUserSubject.asObservable();
    }
 
-
-   signup = (user: SignupInterface): boolean => {
-      // signup(user: SignupInterface): boolean {
-      let retVal = false;
-
-      if (user.email !== '' && user.password !== '') {
-         this.curUser = {
-            state: AuthStates.emailConfirmPending,
-            email: user.email,
-            firstname: user.firstname,
-            lastname: user.lastname,
-            callingcode: user.calling_code,
-            phone: user.phone,
-            activationcode: Math.random().toString(36).substring(2, 15) // temporary, I believe.
-         };
-         this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
-         this.curUserSub.next(this.curUser);
-         retVal = true;
-      }
-
-      return retVal;
-   }
 
    login = (user: LoginInterface): boolean => {
-      this.curUser.state = AuthStates.loggedIn;
-      this.curUser.email = user.email;
-      this.curUser.firstname = "Test";
-      this.curUser.lastname = "User";
-      this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
-      this.curUserSub.next(this.curUser);
-      return true;
+
+      let url = "http://localhost/devportal/login.php";
+      this.http.post(url, JSON.stringify(user))
+         .subscribe(
+            (success) => { console.log("Login Success: " + success) },
+            (error) => { console.error("Login Failed: " + error) },
+            () => { console.log("Waiting for login to complete") }
+         );
+      // If Success, update the local session info and associated subject.
+      if (1) {
+         this.curUser = {
+            sessionId: "MySESSIONID",
+            email: user.email,
+            firstname: "Fake",
+            lastname: "User",
+            country: "United States",
+            calling_code: "+1",
+            phone: "3125882300",
+            company: "Infinite Convergence",
+            account_role: UserAccountRoles.regular,
+            account_type: UserAccountTypes.trial,
+            account_state: UserAccountStates.loggedIn,
+            account_create_date: new Date(),
+            account_expired_date: new Date(),
+            account_balance: 0,
+            account_limit: 500
+         }
+
+         this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+         this.curUserSubject.next(this.curUser);
+
+         return true;
+      }
+      return false;
+
    }
+
+   signup = (user: SignupInterface): boolean => {
+
+      // Issue the signup request to the server
+      // If success, update the local session info and associated subject.
+
+      if (1) {
+         this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
+         this.curUserSubject.next(this.curUser);
+         return true;
+      }
+      return false;
+   }
+
+
 
    handleForgotPasswordRequest = (email: string): boolean => {
       console.log("Forgot Password request for email: " + email);
@@ -131,16 +116,27 @@ export class AuthService {
    logout() {
       this.initCurUserObj();
       this.storageService.set(USER_AUTH_STORAGE_KEY, this.curUser);
-      this.curUserSub.next(this.curUser);
+      this.curUserSubject.next(this.curUser);
       this.router.navigate(['/splash']);
    }
 
    private initCurUserObj() {
       this.curUser = {
-         state: AuthStates.loggedOut,
+         sessionId: "",
          email: "",
          firstname: "",
-         lastname: ""
+         lastname: "",
+         country: "",
+         calling_code: "",
+         phone: "",
+         company: "",
+         account_role: UserAccountRoles.unknown,
+         account_state: UserAccountStates.loggedOut,
+         account_type: UserAccountTypes.unknown,
+         account_create_date: null,
+         account_expired_date: null,
+         account_balance: 0,
+         account_limit: 0
       };
    }
 

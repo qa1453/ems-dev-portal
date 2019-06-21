@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { UserAuthInfo } from '../authstates.enum';
+import { UserSessionInfo } from '../user-session-info';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
@@ -11,7 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 })
 export class VerifyEmailComponent implements OnInit {
    public myFormGroup: FormGroup;
-   public userAuthInfo: UserAuthInfo;
+   public userSessionInfo: UserSessionInfo;
 
    constructor(
       public dialogRef: MatDialogRef<VerifyEmailComponent>,
@@ -29,8 +29,8 @@ export class VerifyEmailComponent implements OnInit {
       })
 
       // subscribe to userAutoChanges
-      this.authService.getUserInfoObs().subscribe((userAuthInfo) => {
-         this.userAuthInfo = userAuthInfo;
+      this.authService.userInfoAsObservable.subscribe((userSessionInfo) => {
+         this.userSessionInfo = userSessionInfo;
       })
    }
 
@@ -47,7 +47,7 @@ export class VerifyEmailComponent implements OnInit {
 
    onResendEmailSubmit = () => {
       this._snackBar.open(
-         `Email has been sent to ${this.userAuthInfo.email}!`,
+         `Email has been sent to ${this.userSessionInfo.email}!`,
          "X Dismiss", {
             verticalPosition: 'top'
          });
